@@ -19,6 +19,6 @@ PPG maximum record is 4,194,304 bits for a one-channel instrument and 2,097,152 
 Resources
 ---------
 Original Discussions:
-https://forum.tek.com/viewtopic.php?f=580&t=141266
-https://forum.tek.com/viewtopic.php?f=580&t=141267
-https://forum.tek.com/viewtopic.php?f=580&t=141268
++ https://forum.tek.com/viewtopic.php?f=580&t=141266
++ https://forum.tek.com/viewtopic.php?f=580&t=141267
++ https://forum.tek.com/viewtopic.php?f=580&t=141268

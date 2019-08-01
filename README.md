@@ -37,13 +37,9 @@ You may also recognize some of these examples from the [Tektronix and Keithley W
 
 * **[Signal Sources](./Signal_Sources)**
 
-* **[Software](./Software)**
-
-* **[Source Measurement Units (SMUs)](./SMU)**
+* **[Source Measurement Units (SMUs)](./SMUs)**
 
 * **[Spectrum Analyzers](./Spectrum_Analyzers)**
-
-* **[Video Test](./Video_Test)**
 
 ## Downloading Files
 If you don't want to clone this entire repository, it's still possible to take individual files. Navigate to the directory holding the file you want and right-click the file to select _Save link as..._ or some variation on that depending on your browser. The file name will automatically populate and you can save the file where you'd like. Alternatively, you can open the file you want on GitHub and right-click "Raw" at the top of the file to accomplish the same thing.

@@ -3,7 +3,8 @@ MDO3, MSO4/5/6 Series Oscilloscopes & MSO5LP/6LP High Speed Digitizers
 
 ## Directory
 ### MDO3 & MSO4/5/6/LP Examples
-* **[Save Hardcopy to PC Example](./src/SaveHardcopyExample)** [![Python 2.7](https://img.shields.io/badge/python-2.7-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-2715/)
+* **[Save Hardcopy to PC Example](./../MidrangeScopes/src/SaveHardcopyExample)** [![Python 2.7](https://img.shields.io/badge/python-2.7-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-2715/)
+
 * **[Simple Plot Example](./../MidrangeScopes/src/SimplePlotExample)** [![Python 3.6](https://img.shields.io/badge/python-3.6-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-360/)
 
 * **[Read WFM File Example](./src/ReadWfmExample)** [![Python 3.6](https://img.shields.io/badge/python-3.6-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-360/)

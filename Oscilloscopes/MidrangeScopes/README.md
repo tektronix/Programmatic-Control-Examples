@@ -9,7 +9,7 @@
 
 * **[Simple Plot Example](./src/SimplePlotExample)** [![Python 3.6](https://img.shields.io/badge/python-3.6-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-360/)
 
-* **[Save Hardcopy to PC Example](./src/SaveHardCopyExample)** [![Python 3.6](https://img.shields.io/badge/python-3.6-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-360/)
+* **[Save Hardcopy to PC Example](./src/SaveHardcopyExample)** [![Python 3.6](https://img.shields.io/badge/python-3.6-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-360/)
 
 ### MDO3000/4000C series scopes
 * **[MDO3AFG, MDO4AFG Send Arb Example](./src/SendArbExample)** [![Python 3.6](https://img.shields.io/badge/python-3.6-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-360/)

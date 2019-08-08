@@ -1,0 +1,11 @@
+*.db
+*.opendb
+*.suo
+*.user
+Release
+Debug
+bin
+obj
+My Project
+
+

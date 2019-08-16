@@ -1,6 +1,6 @@
 [![TekMonogram](https://tektronix.github.io/media/tekmonogram.png)](https://github.com/tektronix)
 
-# Programmatic Control Examples [![Tektronix](https://tektronix.github.io/media/TEK-opensource_badge.svg)](https://github.com/tektronix)
+# Programmatic Control Examples [![Tektronix](https://tektronix.github.io/media/TEK-opensource_badge.svg)](https://github.com/tektronix) [![CodeFactor](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples/badge)](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples)
 > Code examples sorted by instrument, including examples taken from the User's Manuals. This is a good place to start off learning about programming for an instrument.
 
 This GitHub repository stores working and in-progress code examples. The code and content here is not officially supported unless otherwise stated by a Tektronix employee. It is offered for learning and collaboration purposes.

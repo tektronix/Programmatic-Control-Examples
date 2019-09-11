@@ -1,0 +1,27 @@
+Get 16 traces.
+enable ability to check status of traces 15-16
+
+STAT:QUES:BLIM:CHAN:ECH:ENAB?
+STAT:QUES:BLIM:CHAN:ECH:ENAB 3
+
+set bandwidth limit test for both
+
+set negative transisiton for trace 15 positive for trace 16
+
+STAT:QUES:BLIM:CHAN:ECH:NTR 1
+STAT:QUES:BLIM:CHAN:ECH:PTR 2
+
+Query event should be 0
+STAT:QUES:BLIM:CHAN:ECH:EVEN?
+returns 0
+
+Make both tests pass then query again.
+STAT:QUES:BLIM:CHAN:ECH:EVEN?
+returns 1
+
+Make both tests fail then query again
+STAT:QUES:BLIM:CHAN:ECH:EVEN?
+returns 3?
+
+PTR becomes true when going from pass to fail
+NTR becomes true when going from fail to pass 

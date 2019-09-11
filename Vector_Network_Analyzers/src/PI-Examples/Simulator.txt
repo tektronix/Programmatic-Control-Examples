@@ -1,0 +1,37 @@
+SIM:FILE:FOLD?
+
+SIM:FILE:FET 1, FactoryErrorTermsSynthPort1.csv
+
+SIM:FILE:UET 1,UserErrorTermsPort1.csv
+
+SIM:FILE:STF SimulatorSTF.csv
+
+SIM:FILE:PCF SimulatorPCF.csv
+
+SIM:FILE:RTF SimulatorRTF.csv
+
+SIM:FILE:LCOM SimulatorLossCompensation.csv
+
+SIM:FILE?
+SIM:FILE SimulatorFilter.s2p
+SIM:FILE?
+
+SIM:NF?
+SIM:NF -10e10
+SIM:NF?
+SIM:NF 10e10
+SIM:NF?
+SIM:NF -12.21654
+SIM:NF?
+SIM:NF -1e1
+SIM:NF?
+
+SIM:RCF?
+SIM:RCF -20e10
+SIM:RCF?
+SIM:RCF 20e20
+SIM:RCF?
+SIM:RCF 12.15344
+SIM:RCF?
+SIM:RCF 1e1
+SIM:RCF?

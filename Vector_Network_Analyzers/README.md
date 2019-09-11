@@ -7,7 +7,7 @@ TTR500 Series
 
 * **[PI Examples](./src/PI-Examples)** [![SCPI](https://img.shields.io/badge/Programmable-Interface-1CB5D8)](https://www.tek.com/vna/ttr500-manual/ttr500-series)
 
-* **[TTR500 Driver](./TTR500_Driver)** [![NI](https://img.shields.io/badge/NI-LabView-A5CE39)](https://www.ni.com/en-us/shop/labview.html)  
+* **[TTR500 Driver](./src/TTR500_Driver)** [![NI](https://img.shields.io/badge/NI-LabView-A5CE39)](https://www.ni.com/en-us/shop/labview.html)  
 
   
 

@@ -8,6 +8,9 @@ git:
 branches:
   only:
     - master
+    
+notifications:
+  slack: tek-oso-internal:tBStikUyvah8EOPb8QY7VWvS
 
 before_install:
  - go get -u github.com/raviqqe/liche

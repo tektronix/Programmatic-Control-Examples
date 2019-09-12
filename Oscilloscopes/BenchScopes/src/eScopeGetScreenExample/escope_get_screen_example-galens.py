@@ -50,7 +50,7 @@ if __name__ == "__main__":
     saveFile.write(scopeShot)
     saveFile.close()
 
-    if len(scopeShot) > 0:
+    if scopeShot:
         print("Collected image successfully.")
         print("Image saved to {0}".format(save_file))
         print("Size (bytes): {0}".format(len(scopeShot)))

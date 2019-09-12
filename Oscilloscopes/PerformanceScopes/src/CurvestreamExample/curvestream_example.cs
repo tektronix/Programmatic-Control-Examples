@@ -209,7 +209,7 @@ namespace Curve_Streaming_Example
                 StreamWriter SaveFile = new StreamWriter(FileName, false, Encoding.ASCII, BUFFER_SIZE * 10);
 
                 // Calculate the xvalue for the first point in the record
-                xvalue = (float)-pt_off * xinc + xzero;
+                xvalue = (float)(-pt_off * (xinc + xzero));
 
                 // Get the number of bytes that make up the data length string
                 NumBytesCharCount = Int32.Parse(BlockHeader.TrimStart('#'), System.Globalization.NumberStyles.HexNumber);
@@ -238,7 +238,7 @@ namespace Curve_Streaming_Example
                     // Convert byte values to floating point values then write to .csv file
                     foreach (byte DataPoint in DataBuffer)
                     {
-                        yvalue = (float)(Convert.ToSingle((sbyte)DataPoint) - yoff) * ymult + yzero;
+                        yvalue = (float)((Convert.ToSingle((sbyte)DataPoint) - yoff) * (ymult + yzero));
                         SaveFile.WriteLine(xvalue.ToString() + "," + yvalue.ToString());
                         // Note: Converting to .CSV is very time consuming operation.
                         // Save in a binary format to maximize speed.  Highly recommended for waveforms >= 1 Million points.

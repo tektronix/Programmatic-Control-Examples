@@ -28,20 +28,20 @@ def main():
         f = open ('saveontrig.dat', 'w')
         f.write ('C:\Images\\')
         f.close()
-    
+
     f = open ('saveontrig.dat', 'r')
     filepath = f.read() +  str(time()).split('.')[0] + '\\'
     f.close()
-       
+
     #check if the directory for saved files is created, if not make it
     if not os.path.exists(filepath):
         os.makedirs(filepath)
-        print 'Creating Directory ' + filepath            
+        print 'Creating Directory ' + filepath
     print "Capture data and logs will be saved to " + filepath
     print "To change the root directory for captured files"
     print "edit the saveontrig.dat file located in the folder where"
     print "SaveonTrig program resides."
-    
+
     # Create list of VISA objects and allow user to select which to connect to
     resource_names = []
     while True:
@@ -58,17 +58,17 @@ def main():
             print "Unable to communicate with VISA Driver"
             a = raw_input("Press ENTER to exit")
             raise SystemExit()
-        
+
     for i in xrange(return_counter - 1):
         resource_names.append(vpp43.find_next(find_list))
-    
+
     print "\nVisa resources found:"
-    for a in range(len(resource_names)):
-        print a, resource_names[a] 
+    for a, item in enumerate(resource_names):
+        print a, resource_names[a]
     print "Attempting to Identify Instruments. Please Wait..."
 
     resource_ids = []
-    for a in range(len(resource_names)):
+    for a, item in enumerate(resource_names):
         interface_type, _ = \
         vpp43.parse_resource(resource_manager.session, resource_names[a])
         if interface_type == VI_INTF_ASRL:
@@ -88,11 +88,11 @@ def main():
                 except:
                     resource_ids.appent(" Error Communicating with this device")
             del tempscope
-    
+
     print "\nIdentified Instruments:"
-    for a in range(len(resource_names)):
+    for a, item in enumerate(resource_names):
         print a, resource_ids[a]
-        
+
     # Query from user which scope to connect to
     while True:
         try:
@@ -103,9 +103,9 @@ def main():
                 print "Invalid Input, Please Try Again"
         except ValueError:
             print "Invalid Input, Please Try Again"
-              
-    
-    # Connect to scope, and verify that it can be talked too      
+
+
+    # Connect to scope, and verify that it can be talked too
     while True:
         try:
             scope = instrument(resource_names[user_device], timeout = 15)
@@ -117,8 +117,8 @@ def main():
             print "Unable to communicate over this port"
             a = raw_input("Press ENTER to exit")
             raise SystemExit()
-            
-    
+
+
     # query from the user what type of capture to make
     while True:
         try:
@@ -133,7 +133,7 @@ def main():
                 print "Invalid Input, Please Try Again"
         except ValueError:
             print "Invalid Input, Please Try Again"
-    
+
     # query from the user how many minutes to capture data for
     while True:
         try:
@@ -141,7 +141,7 @@ def main():
             break
         except ValueError:
             print "Invalid Input, Please Try Again"
-    
+
     # Query from user if a trigger should be forced to execute periodically
     print "If no trigger is reieved, would you like to"
     Forcetrig = str(raw_input(" periodically force a trigger? (Y/N) \n"))
@@ -156,7 +156,7 @@ def main():
                 print "Invalid Input, Please Try Again"
     else:
         Forcetrig = False
-    
+
     # Save current scope configuration
     print "Saving current scope setup."
     Scopesetup = scope.ask("*LRN?")
@@ -184,7 +184,7 @@ def main():
             if str(scope.ask("DATA:COMP?")) != "COMPOSITE_YT":
                 scope.write("DATA:COMP COMPOSITE_YT")
                 print "Only Composite_YT supported for FilterVu"
-                
+
     elif 'TDS' in scopename[1] and '30' in scopename[1]:
         fileformat = 'BMP'
         scope.write("header off")
@@ -195,10 +195,10 @@ def main():
         HDelay = float(scope.ask("HORizontal:DELay:TIME?"))
         HPos = float((Hscale * 5 + float(scope.ask("HORIZONTAL:DELay:TIME?")))/ \
                      (Hscale * 10) * 100)
-    
+
     #Generic all model configure the scope hardcopy settings
     scope.write("VERBOSE OFF")
-    
+
     scope.write("HARDCOPY:LAYOUT PORTRAIT;PREVIEW 0;INKSAVER 0")
     scope.write("HARDCOPY:PALETTE NORMAL")
     scope.write("SAVE:IMAG:FILEF " + fileformat)
@@ -212,14 +212,14 @@ def main():
     ymult = float(scope.ask("wfmpre:ymult?"))
     yoff = float(scope.ask("wfmpre:yoff?"))
     yzero = float(scope.ask("wfmpre:yzero?"))
-    
+
     # Determine which channels are enabled for
     if 'TD' in scopename[1]:
         if '4' in scopename[1][7]:
             channelson = range(4)
         if '2' in scopename[1][7]:
             channelson = range(2)
-    else:    
+    else:
         if '4' in scopename[1][6]:
             channelson = range(4)
         if '2' in scopename[1][6]:
@@ -228,8 +228,8 @@ def main():
     # Set up the sub folder for aquired data 
     filenumber = 1
     filename = scopename[1] + '_' + scopename[2] +'_'
-    
-        
+
+
     #Query from user of the front panel should be locked during operation
     print "Would you like to lock the front-panel during the capture session?"
     LockFP = str(raw_input())
@@ -239,20 +239,20 @@ def main():
         capturelog.append("Front-panel locked during session? (Y/N)\n")
     else:
         LockFP= False
-    
-    # Start entering data into the capture log.  
+
+    # Start entering data into the capture log.
     capturelog.append("Log for captures Starting Catpures on " + ctime()+ '\n')
     capturelog.append("Tracking " + str(scopename[1]) + " for " + \
                       str(duration_time) + " minutes. \n \n")
-    
+
     # Determine which channels are actually on and record to the caputre log
     for a in channelson:
         channelson[a]=int(scope.ask("SEL:CH"+ str(a+1) +"?"))
         if channelson[a] == 1:
             print 'Channel ' + str(a+1) + ' is on'
             capturelog.append('Channel ' + str(a+1) + ' is on \n')
-    
-            
+
+
     # Acquire screen shots for duration of time indicated
     scope.write("ACQ:STOPA SEQ")
     print "Starting Catpures on " + ctime() + '\n'
@@ -270,7 +270,7 @@ def main():
             if looptime > end_time:
                 if scope.ask("TRIGGER:STATE?") == 'READY':
                     print "No trigger event for finale capture" 
-                          
+
                     capturelog.append('\n' "No trigger event for final capture" \
                                       + '\n')
                     break
@@ -282,13 +282,13 @@ def main():
                     capturelog.append("Trigger forced at " + \
                                       str(ctime(triggertime)) +'\n')
                     while (scope.ask("TRIGGER:STATE?") != 'SAV'):
-                        scope.write("Trigger Force") # allows for Averageing to be used                    
+                        scope.write("Trigger Force") # allows for Averageing to be used
                     break
-                
-        # Curve data captured and saved as CSV file        
+
+        # Curve data captured and saved as CSV file
         if (logmode == 1 or logmode == 2) and scope.ask("TRIGGER:STATE?") \
            != 'READY':
-            for a in range(len(channelson)):
+            for a, item in enumerate(channelson):
                 if channelson[a] == 1:
                     scope.write("DATA:SOURCE CH" + str(a+1))
                     scope.write("CURVE?")
@@ -324,7 +324,7 @@ def main():
                                                               +":TIME?")))/ \
                                                              (Hscale * 10) * 100)
 
-                    
+
                     # Strip the header
                     datac = datac[headerLen:(int(recLen)-1)]
                     # Convert to byte values
@@ -332,14 +332,14 @@ def main():
                     # Convert bytes to voltage values
                     x = []
                     y = []
-                    for i in range(0,len(datac)):
+                    for i, item in enumerate(0, datac):
                         x.append((i-(len(datac)*(HPos/100)))* xincr + HDelay)
                         y.append(((datac[i]-yoff) * ymult) + yzero)
                     #save curve data in .csv format
                     f2 = open(filepath + filename+str(filenumber)+ ' CH_' \
                               + str(a+1)+'.csv', 'w')
                     f2.write("s,Volts\n")
-                    for i in range(0,len(datac)):
+                    for i, item in enumerate(0, datac):
                         f2.write(str(x[i]) + ',' + str(y[i])+ '\n')
                     f2.close()
                     print "CH " + str(a+1) + " Waveform #" + str(filenumber) \
@@ -352,8 +352,8 @@ def main():
                                       + ' CH_' + str(a+1)+ '.csv')
                     capturelog.append(" triggered at "+ ctime(triggertime) \
                                       + '\n')
-    
-        # start the data tansfer and save file for the Image format    
+
+        # start the data tansfer and save file for the Image format
         if (logmode == 0 or logmode == 2) and scope.ask("TRIGGER:STATE?") \
            != 'READY':
             # Give some time for meas values to compute if no curve data pulled.
@@ -381,16 +381,16 @@ def main():
             f.close()
             print "HardCopy #" + str(filenumber) + " saved as " \
                   + filepath + filename + str(filenumber) + '.'+ \
-                  fileformat  
+                  fileformat
             print "     triggered at "+ ctime(triggertime) + '\n'
             capturelog.append("HardCopy #" + str(filenumber) + " saved as " \
                   + filepath + filename + str(filenumber) + '.'+ \
                   fileformat )
             capturelog.append(" triggered at "+ ctime(triggertime) + '\n')
-    
-        #increment the capture number       
+
+        #increment the capture number
         filenumber = filenumber + 1
-    
+
     #clean up after captures complete, and write the capture log to a file
     print "Completed catpures on " + ctime()+ '\n'
     if LockFP:
@@ -401,7 +401,8 @@ def main():
     caplogfile = filepath + "Capture_Log_" + str(int(time())) + ".txt"
     print "Saving Capture Log to " + caplogfile
     f3 = open(caplogfile, 'w')
-    for a in range(len(capturelog)):
+
+    for a, item in enumerate(capturelog):
         f3.write(capturelog[a])
     f3.write("Initial scope setup:\n")
     f3.write(Scopesetup)

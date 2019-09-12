@@ -5,7 +5,7 @@ The purpose of this example is to demonstrate how to get a MATLAB driver for an 
 
 This example will lead you through installing the NI driver, recognizing where that installation is and confirming its existence, then using the ".c" driver to make a MATLAB ".mdd" driver.
 
-First, download and install the NI Driver. [This](http://sine.ni.com/apps/utf8/niid_web_display.download_page?p_id_guid=E3B19B3E94FE659CE034080020E74861) is the relevant driver for my TBS1202B-EDU. You do not need to install the LabVIEW specific components, but you do need to install the LabWindows component, since that will create the necessary ".c" driver file.
+First, download and install the NI Driver. [This](http://sine.ni.com/apps/utf8/niid_web_display.model_page?p_model_id=22954) is the relevant driver for my TBS1202B-EDU. You do not need to install the LabVIEW specific components, but you do need to install the LabWindows component, since that will create the necessary ".c" driver file.
 
 ----
 

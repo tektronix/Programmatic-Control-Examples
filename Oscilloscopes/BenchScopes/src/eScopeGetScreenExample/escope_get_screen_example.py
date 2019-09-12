@@ -39,16 +39,16 @@ def GetScopeImage(ipAddress):
         # Not proper data
         print("Content returned is not image/png")
         imgData = b""
-        
+
     else: # Content is correct so copy the data to a file
 
         # Find the length of the png data
         searchObj = re.search(b"Content-Length: (\d+)\r\n", data)
         imgSizeLeft = int(searchObj.group(1))
-        
+
         # Pull the image data out of the first buffer
         startIdx = data.find(b"\x89PNG")
-        
+
         # For the TDS3000B Series, the PNG image data may not come out with the
         # HTTP header
         # If the PNG file header was not found then do another read
@@ -57,7 +57,7 @@ def GetScopeImage(ipAddress):
             imgData = data[data.find(b"\x89PNG"):]
         else:
             imgData = data[startIdx:]
-            
+
         imgSizeLeft = imgSizeLeft - len(imgData)
 
         # Read the rest of the image data
@@ -71,7 +71,7 @@ def GetScopeImage(ipAddress):
             # The TDS3000B Series sends the wrong value for Content-Length.  It
             # sends a value much larger than the real length.
             # If there is no more data then break out of the loop
-            if (len(data) == 0):
+            if not data:
                 break
 
         # Add the last chunk of data
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     saveFile.write(scopeShot)
     saveFile.close()
 
-    if len(scopeShot) > 0:
+    if scopeShot:
         print("Collected image successfully.")
         print("Image saved to {}".format(save_file_location))
         print("Size (bytes): {}".format(len(scopeShot)))

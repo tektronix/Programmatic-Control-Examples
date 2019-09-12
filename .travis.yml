@@ -2,12 +2,15 @@ language: go
 go:
  - "1.12.x"
 
-git: 
+git:
   depth: 1
-  
+
 branches:
   only:
     - master
+
+notifications:
+  slack: tek-oso-internal:tBStikUyvah8EOPb8QY7VWvS
 
 before_install:
  - go get -u github.com/raviqqe/liche

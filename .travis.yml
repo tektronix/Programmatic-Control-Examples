@@ -1,0 +1,16 @@
+language: go
+go:
+ - "1.12.x"
+
+git: 
+  depth: 1
+  
+branches:
+  only:
+    - master
+
+before_install:
+ - go get -u github.com/raviqqe/liche
+
+script:
+ - liche -v -t 60 -r .

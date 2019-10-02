@@ -1,0 +1,174 @@
+﻿namespace CurvestreamExample
+{
+    partial class frmMain
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.cmdStartTest = new System.Windows.Forms.Button();
+            this.cmdEndTest = new System.Windows.Forms.Button();
+            this.lblCurvesread = new System.Windows.Forms.Label();
+            this.lblCurveCount = new System.Windows.Forms.Label();
+            this.txtVisaResourceName = new System.Windows.Forms.TextBox();
+            this.lblVisaResourceName = new System.Windows.Forms.Label();
+            this.lblSaveDirectory = new System.Windows.Forms.Label();
+            this.txtSaveDirectory = new System.Windows.Forms.TextBox();
+            this.lblWfmSec = new System.Windows.Forms.Label();
+            this.lblWfmPerSec = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // cmdStartTest
+            // 
+            this.cmdStartTest.Location = new System.Drawing.Point(279, 81);
+            this.cmdStartTest.Name = "cmdStartTest";
+            this.cmdStartTest.Size = new System.Drawing.Size(75, 23);
+            this.cmdStartTest.TabIndex = 1;
+            this.cmdStartTest.Text = "Start";
+            this.cmdStartTest.UseVisualStyleBackColor = true;
+            this.cmdStartTest.Click += new System.EventHandler(this.cmdStartTest_Click);
+            // 
+            // cmdEndTest
+            // 
+            this.cmdEndTest.Enabled = false;
+            this.cmdEndTest.Location = new System.Drawing.Point(279, 111);
+            this.cmdEndTest.Name = "cmdEndTest";
+            this.cmdEndTest.Size = new System.Drawing.Size(75, 23);
+            this.cmdEndTest.TabIndex = 2;
+            this.cmdEndTest.Text = "End Test";
+            this.cmdEndTest.UseVisualStyleBackColor = true;
+            this.cmdEndTest.Click += new System.EventHandler(this.cmdEndTest_Click);
+            // 
+            // lblCurvesread
+            // 
+            this.lblCurvesread.AutoSize = true;
+            this.lblCurvesread.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurvesread.Location = new System.Drawing.Point(54, 18);
+            this.lblCurvesread.Name = "lblCurvesread";
+            this.lblCurvesread.Size = new System.Drawing.Size(124, 24);
+            this.lblCurvesread.TabIndex = 3;
+            this.lblCurvesread.Text = "Curves Read:";
+            // 
+            // lblCurveCount
+            // 
+            this.lblCurveCount.AutoSize = true;
+            this.lblCurveCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurveCount.Location = new System.Drawing.Point(184, 18);
+            this.lblCurveCount.Name = "lblCurveCount";
+            this.lblCurveCount.Size = new System.Drawing.Size(20, 24);
+            this.lblCurveCount.TabIndex = 4;
+            this.lblCurveCount.Text = "0";
+            // 
+            // txtVisaResourceName
+            // 
+            this.txtVisaResourceName.Location = new System.Drawing.Point(12, 81);
+            this.txtVisaResourceName.Name = "txtVisaResourceName";
+            this.txtVisaResourceName.Size = new System.Drawing.Size(242, 20);
+            this.txtVisaResourceName.TabIndex = 5;
+            this.txtVisaResourceName.Text = "TCPIP0::192.168.1.10::inst0::INSTR";
+            // 
+            // lblVisaResourceName
+            // 
+            this.lblVisaResourceName.AutoSize = true;
+            this.lblVisaResourceName.Location = new System.Drawing.Point(9, 65);
+            this.lblVisaResourceName.Name = "lblVisaResourceName";
+            this.lblVisaResourceName.Size = new System.Drawing.Size(114, 13);
+            this.lblVisaResourceName.TabIndex = 6;
+            this.lblVisaResourceName.Text = "VISA Resource Name:";
+            // 
+            // lblSaveDirectory
+            // 
+            this.lblSaveDirectory.AutoSize = true;
+            this.lblSaveDirectory.Location = new System.Drawing.Point(9, 116);
+            this.lblSaveDirectory.Name = "lblSaveDirectory";
+            this.lblSaveDirectory.Size = new System.Drawing.Size(80, 13);
+            this.lblSaveDirectory.TabIndex = 7;
+            this.lblSaveDirectory.Text = "Save Directory:";
+            // 
+            // txtSaveDirectory
+            // 
+            this.txtSaveDirectory.Location = new System.Drawing.Point(12, 132);
+            this.txtSaveDirectory.Name = "txtSaveDirectory";
+            this.txtSaveDirectory.Size = new System.Drawing.Size(242, 20);
+            this.txtSaveDirectory.TabIndex = 8;
+            this.txtSaveDirectory.Text = "C:\\Temp\\";
+            // 
+            // lblWfmSec
+            // 
+            this.lblWfmSec.AutoSize = true;
+            this.lblWfmSec.Location = new System.Drawing.Point(310, 29);
+            this.lblWfmSec.Name = "lblWfmSec";
+            this.lblWfmSec.Size = new System.Drawing.Size(51, 13);
+            this.lblWfmSec.TabIndex = 9;
+            this.lblWfmSec.Text = "Wfm/sec";
+            // 
+            // lblWfmPerSec
+            // 
+            this.lblWfmPerSec.AutoSize = true;
+            this.lblWfmPerSec.Location = new System.Drawing.Point(276, 29);
+            this.lblWfmPerSec.Name = "lblWfmPerSec";
+            this.lblWfmPerSec.Size = new System.Drawing.Size(13, 13);
+            this.lblWfmPerSec.TabIndex = 10;
+            this.lblWfmPerSec.Text = "0";
+            this.lblWfmPerSec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // frmMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(373, 168);
+            this.Controls.Add(this.lblWfmPerSec);
+            this.Controls.Add(this.lblWfmSec);
+            this.Controls.Add(this.txtSaveDirectory);
+            this.Controls.Add(this.lblSaveDirectory);
+            this.Controls.Add(this.lblVisaResourceName);
+            this.Controls.Add(this.txtVisaResourceName);
+            this.Controls.Add(this.lblCurveCount);
+            this.Controls.Add(this.lblCurvesread);
+            this.Controls.Add(this.cmdEndTest);
+            this.Controls.Add(this.cmdStartTest);
+            this.Name = "frmMain";
+            this.Text = "Curvestream Example";
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button cmdStartTest;
+        private System.Windows.Forms.Button cmdEndTest;
+        private System.Windows.Forms.Label lblCurvesread;
+        private System.Windows.Forms.Label lblCurveCount;
+        private System.Windows.Forms.TextBox txtVisaResourceName;
+        private System.Windows.Forms.Label lblVisaResourceName;
+        private System.Windows.Forms.Label lblSaveDirectory;
+        private System.Windows.Forms.TextBox txtSaveDirectory;
+        private System.Windows.Forms.Label lblWfmSec;
+        private System.Windows.Forms.Label lblWfmPerSec;
+    }
+}
+

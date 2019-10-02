@@ -242,7 +242,7 @@ namespace CurvestreamExample
                 }
 
                 // Calculate the xvalue for the first point in the record
-                xvalue = (float)-pt_off * xinc + xzero;
+                xvalue = (((float)(-pt_off)) * xinc) + xzero;
 
                 // Get the number of bytes that make up the data length string
                 NumBytesCharCount = Int32.Parse(BlockHeader.TrimStart('#'), System.Globalization.NumberStyles.HexNumber);
@@ -272,7 +272,7 @@ namespace CurvestreamExample
                     // Convert byte values to floating point values then write to .csv file
                     foreach (byte DataPoint in DataBuffer)
                     {
-                        yvalue = (float)(Convert.ToSingle((sbyte)DataPoint) - yoff) * ymult + yzero;
+                        yvalue = ((Convert.ToSingle((sbyte)DataPoint) - yoff) * ymult) + yzero;
                         if (saveToDisk)
                             SaveFile.WriteLine(xvalue.ToString() + "," + yvalue.ToString());
                         // Note: Converting to .CSV is very time consuming operation.

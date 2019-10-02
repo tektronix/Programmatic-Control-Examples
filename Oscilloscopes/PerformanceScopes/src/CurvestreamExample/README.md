@@ -7,3 +7,14 @@ Resources
 ---------
 Original Discussion:
 https://forum.tek.com/viewtopic.php?f=580&t=138342
+
+
+One Example, Two Versions
+-------------------------
+Within this directory you will find two versions of the example.
+* *CurvestreamExample-NI-VISA*
+  * Contains the original example as posted on the Tektronix forums.
+* *CurvestreamExample-IVI-VISA<nolink/>.NET*
+  * An updated version of the example that uses the IVI standard VISA<nolink/>.NET library.
+
+Since the time when the Curvestream Example was originally created, NI has deprecated the NI VisaNS library and recommends using the IVI standard VISA<nolink/>.NET library.  For users of this example program, use of the VISA<nolink/>.NET version of the example is recommended.

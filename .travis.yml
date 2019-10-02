@@ -1,20 +1,20 @@
+---
 language: go
 go:
  - "1.12.x"
 
 git:
-  depth: 1
+ depth: 1
 
 branches:
-  only:
-    - master
+ only:
+  - master
 
 notifications:
-  slack: tek-oso:tBStikUyvah8EOPb8QY7VWvS
+ slack: tek-oso:tBStikUyvah8EOPb8QY7VWvS
 
 before_install:
  - go get -u github.com/raviqqe/liche
 
 script:
  - liche -v -t 60 -r .
-

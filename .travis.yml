@@ -14,7 +14,13 @@ notifications:
  slack: tek-oso:tBStikUyvah8EOPb8QY7VWvS
 
 before_install:
- - go get -u github.com/raviqqe/liche
-
+ - sudo apt-get update --fix-missing
+ - sudo apt-get -y install bundler
+ 
+before_script:
+ - wget https://github.com/raviqqe/liche/archive/4db4b89.tar.gz -O /tmp/liche.tar.gz
+ - mkdir liche && tar -xvf /tmp/liche.tar.gz -C liche --strip-components 1
+ - pushd $PWD/liche/tools && ./dependencies.sh && ./lint.sh && ./build.sh && popd
+ 
 script:
  - liche -v -t 60 -r .

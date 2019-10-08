@@ -7,7 +7,6 @@ TTR500 Series
 
 * **[TTR500 Driver](./src/TTR500_Driver)** [![NI](https://img.shields.io/badge/NI-LabView-A5CE39)](https://www.ni.com/en-us/shop/labview.html)  
 
-
 ----
 * **[Back to Home Page](./../README.md)**
 ----

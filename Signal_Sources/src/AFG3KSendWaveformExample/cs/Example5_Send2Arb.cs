@@ -37,7 +37,7 @@ namespace Example5_Send2Arb
             {
                 hexStr1[i] = hexArray[i].ToString("X4");
                 hexStr2[2 * i] = hexStr1[i].Substring(0, 2);
-                hexStr2[2 * i + 1] = hexStr1[i].Substring(2, 2);
+                hexStr2[(2 * i) + 1] = hexStr1[i].Substring(2, 2);
             }
             byte[] Str2Byt = hexStr2.Select(s => Convert.ToByte(s, 16)).ToArray();
             string EnCdStr = System.Text.Encoding.ASCII.GetString(Str2Byt);

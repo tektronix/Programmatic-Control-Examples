@@ -1,0 +1,84 @@
+FINDPEAKS,  Version 1.6 October 26, 2006
+Tom O'Haver, toh@umd.edu
+
+
+findpeaks
+function P=findpeaks(x,y,SlopeThreshold,AmpThreshold,smoothwidth,FitWidth)
+Basic function to locate and measure the positive peaks in a noisy
+data sets.  Detects peaks by looking for downward zero-crossings
+ in the smoothed third derivative that exceed SlopeThreshold 
+ and peak amplitudes that exceed AmpThreshold.  Determines, 
+ position, height, and approximate width of each peak by least-squares 
+ curve-fitting the log of top part of the peak with a parabola.
+ Returns a list (in matrix P) containing the peak number and
+ position, height, and width of each peak.
+ The 4 parameters are:
+ SlopeThreshold (SlopeT) - Slope of the smoothed third-derivative that is  
+   taken to indicate a peak. Larger values will neglect small features.
+ AmpThreshold (AmpT) - Any peaks with height less than this value are ignored.
+ SmoothWidth - Width of smooth functions applied to data before slope is
+   measured. Larger values will neglect small features. A reasonable value is 
+   about equal to 1/2 of the half-width of the peaks.
+ FitWidth - The number of points around the "top part" of the (unsmoothed)
+   peak that are taken to estimate the peak heights, positions, and widths.
+   A reasonable value is about equal to 1/2 of the half-width of the peaks. 
+
+DemoFindPeak
+A simple demonstration script using the findpeaks function on noisy synthetic data. Numbers the peaks and prints out the P matrix in the Matlab command window:
+
+FindPeakSliders
+Interactive findpeaks script for your own data. Requires 
+Matlab 6.5. This can be used to  determine what values of the 
+parameters give the most reliable peak detection.
+Load your data set into the vectors x and y 
+(x = independent variable, y = dependent variable), then run this 
+m-file and adjust the four sliders to change the four arguments 
+of the peakfind function. The range of the sliders is easily 
+changed to suit a wide range of data types. The BG button is used 
+for baseline (background) subtraction: click once on the BG button, then click on the baseline at five points starting to the left of the lowest x-value and ending to the right of the higest x-value. The background will be subtracted. You can repeat as 
+needed.  (You can also change the number of baseline points by 
+changing BaselinePoints in the function BG.m). Peak number and the 
+estimated position, height, and width of each peak is returned 
+in the matrix P:
+
+DemoFindPeakSliders
+A self-contained interactive demonstration of FindPeakSliders applied to noisy synthetic data set consisting of a random number of narrow peaks. Use the sliders to explore the effect of the variables SlopeThreshold (SlopeT), AmplitudeThreshold (AmpT), SmoothWidth (Smooth), and FitWidth (Fit). Peak number and the estimated position, height, and width of each peak is returned in the matrix P.
+
+DemoFindPeakSliders2
+A self-contained interactive demonstration of FindPeakSliders applied to
+noisy synthetic data set consisting of a random number of narrow peaks. Requires Matlab 6.5.  Use the sliders to explore the effect of the variables SlopeThreshold (SlopeT), AmplitudeThreshold (AmpT), SmoothWidth (Smooth), and FitWidth (Fit). Peak number and the estimated 
+ position, height, and width of each peak is returned in the matrix P.
+
+FindPeakSlidersG
+ Interactive findpeaks script with peak-zoom feature, 
+ for pre-defined data in x,y. 
+ Load a typical data set into the vectors x,y, then run this 
+ m-file and adjust the 5 sliders to determine what values of the 
+ parameters give the most reliable peak detection. Peak number and 
+ position, height, and width of each peak is returned in the matrix P. 
+ The 5 sliders are:
+ SlopeThreshold (SlopeT) - Slope of the smoothed third-derivative that is  
+   taken to indicate a peak. Larger values will neglect small features.
+ AmpThreshold (AmpT) - Any peaks with height less than this value are ignored.
+ SmoothWidth - Width of smooth functions applied to data before slope is
+   measured. Larger values will neglect small features. The best value is 
+   about equal to the half-width of the peaks.
+ FitWidth - The number of points around the "top part" of the (unsmoothed)
+   peak that are taken to determine the peak height, positions, and width.
+   The best value is about equal to the half-width of the peaks.
+ Peak - This slider zooms in on any one of the detected peaks, and shows
+   the fitted top of the peak (FitWidth) as a blue curve. To see all the
+   peaks, set the Peaks slider to zero (all the way down).
+The BG button is used 
+for baseline (background) subtraction: click once on the BG button, then click on the baseline at five points starting to the left of the lowest x-value and ending to the right of the higest x-value. The background will be subtracted. You can repeat as 
+needed.  (You can also change the number of baseline points by 
+changing BaselinePoints in the function BG.m). 
+ Note: If the slider ranges are not appropriate for your data, change 
+   them in lines 61 - 66.
+
+DemoFindPeakSlidersG
+Self-contained interactive demo of findpeaks function with 
+peak-zoom feature. 
+
+The remaning m-files in the folder are called by the above functions 
+and scripts.

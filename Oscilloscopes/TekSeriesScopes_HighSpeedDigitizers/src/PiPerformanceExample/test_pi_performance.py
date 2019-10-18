@@ -8,6 +8,31 @@ from time import time, strftime, localtime
 from math import log10, floor
 
 
+def get_parsed_arguments():
+    """ This function parses a resource_expression argument and other optional arguments for this script."""
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("resource_expression", help="The resource_expression of the device to be connected to, "
+                             "provided as a valid TCPIP resource expression. e.g. TCPIP::10.0.0.17::INSTR \n"
+                             "Supported connection types: TCPIP, USBTMC, SOCKET")
+    parser.add_argument("-l", "--loops", type=int, help="Number of times each test is run (default=25)", default=25)
+    parser.add_argument("-r", "--recordlength", type=int, help="Horizontal record length (default=10000)",
+                        default=10000)
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enables messages for PI commands and responses.",
+                        default=False)
+    parser.add_argument("-s", "--single", action="store_true", help="Enables CURVE? testing of a single, "
+                                                                    "stopped acquisition.", default=False)
+    parser.add_argument("-d", "--displayoff", action="store_true", help="Disables channel display.", default=False)
+    parser.add_argument("-p", "--pyvisa", action="store_true", help="Connect via pyvisa-py.", default=False)
+    args = parser.parse_args()
+
+    if args.loops < 1:
+        raise argparse.ArgumentError("Loop count should be greater than 0")
+    if args.recordlength < 1:
+        raise argparse.ArgumentError("Record length should be greater than 0")
+
+    return args
+
 def get_device_robust_connection(resource_expression, tries=4):
     """Retrieves the pi_object representing the connection to the device in the resource expression. The device is
     given four tries by default to regain a connection. This currently handles timeouts and old query results being
@@ -46,7 +71,7 @@ def get_device_robust_connection(resource_expression, tries=4):
                     print("\nSOCKET connections using PyVISA (standalone) to {0} are not supported. "
                           "Aborting test suite.\n".format(resource_expression))
                     raise
-                    # If we ever fiogure out why the reads stall then we will want to assign a term character
+                    # If we ever figure out why the reads stall then we will want to assign a term character
                     # for PyVISA here
                     # pi_object.read_termination = ''
                 else:
@@ -249,30 +274,6 @@ def round_significant_figures(number_to_round, significant_figures):
     return rounded_number
 
 
-def get_parsed_arguments():
-    """This function parses a resource_expression argument and other optional arguments for this script."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument("resource_expression", help="The resource_expression of the device to be connected to, "
-                             "provided as a valid TCPIP resource expression.")
-    parser.add_argument("-l", "--loops", type=int, help="Number of times each test is run (default=25)", default=25)
-    parser.add_argument("-r", "--recordlength", type=int, help="Horizontal record length (default=10000)",
-                        default=10000)
-    parser.add_argument("-v", "--verbose", action="store_true", help="Enables messages for PI commands and responses.",
-                        default=False)
-    parser.add_argument("-s", "--single", action="store_true", help="Enables CURVE? testing of a single, "
-                                                                    "stopped acquisition.", default=False)
-    parser.add_argument("-d", "--displayoff", action="store_true", help="Disables channel display.", default=False)
-    parser.add_argument("-p", "--pyvisa", action="store_true", help="Connect via pyvisa-py.", default=False)
-    args = parser.parse_args()
-
-    if args.loops < 1:
-        raise argparse.ArgumentError("Loop count should be greater than 0")
-    if args.recordlength < 1:
-        raise argparse.ArgumentError("Record length should be greater than 0")
-
-    return args
-
-
 def setup_latency_test(pi_object):
     """This function sets up the device for a PI latency test.
 
@@ -285,16 +286,16 @@ def setup_latency_test(pi_object):
     pi_write(pi_object, "AUTOSET EXECUTE")
     pi_query(pi_object, "*OPC?")
     pi_write(pi_object, "ACQUIRE:STATE OFF")
-    pi_write(pi_object, "HORIZONTAL:MODE MANUAL")  # This enables 5 series instruments to set record length
+    pi_write(pi_object, "HORIZONTAL:MODE MANUAL")  # This enables 4/5/6 series instruments to set record length
     pi_write(pi_object, "HORIZONTAL:RECORDLENGTH {}".format(args.recordlength))
     pi_write(pi_object, "ACQUIRE:MODE SAMPLE")
     pi_write(pi_object, "ACQUIRE:STOPAFTER SEQUENCE")
     pi_write(pi_object, "MEASUREMENT:MEAS1:TYPE PERIOD")
     pi_write(pi_object, "MEASUREMENT:MEAS1:SOURCE CH1")
-    # This turns on the measurement for 4k instruments. 5 series will turn on when measurement type is set (above).
+    # This turns on the measurement for 4k instruments. 4/5/6 series will turn on when measurement type is set (above).
     pi_write(pi_object, "MEASUREMENT:MEAS1:STATE ON")
     if args.displayoff:
-        pi_write(pi_object, "DISPLAY:WAVEFORM OFF")  # Only on 5 series
+        pi_write(pi_object, "DISPLAY:WAVEFORM OFF")  # Only on 4/5/6 series
     pi_query(pi_object, "*OPC?")
 
 
@@ -315,7 +316,7 @@ def setup_throughput_test(pi_object, single=False):
     if single:
         pi_write(pi_object, "ACQuire:STATE OFF")
         pi_write(pi_object, "ACQUIRE:STOPAFTER SEQUENCE")
-    pi_write(pi_object, "HORIZONTAL:MODE MANUAL")  # This enables 5 series instruments to set record length
+    pi_write(pi_object, "HORIZONTAL:MODE MANUAL")  # This enables 4/5/6 series instruments to set record length
     pi_write(pi_object, "HORIZONTAL:RECORDLENGTH {}".format(args.recordlength))
     pi_write(pi_object, "DATA:ENCDG BINARY")
     pi_write(pi_object, "WFMOUTPRE:BYT_NR 1")
@@ -323,7 +324,7 @@ def setup_throughput_test(pi_object, single=False):
     pi_write(pi_object, "DATA:STOP {}".format(args.recordlength))
     pi_query(pi_object, "WFMOUTPRE?")
     if args.displayoff:
-        pi_write(pi_object, "DISPLAY:WAVEFORM OFF")  # Only on 5 series
+        pi_write(pi_object, "DISPLAY:WAVEFORM OFF")  # Only on 4/5/6 series
     pi_query(pi_object, "*OPC?")
 
 
@@ -449,7 +450,7 @@ if __name__ == "__main__":
     # Parse arguments for this script
     args = get_parsed_arguments()
     if args.displayoff:
-        display_off_string = " (waveform display off for 5 series)"
+        display_off_string = " (waveform display off for 4/5/6 series)"
     if args.pyvisa:
         _visa_backend = "@py"
 

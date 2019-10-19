@@ -1,0 +1,4 @@
+PyVISA==1.8
+PyVISA-py==0.2
+
+

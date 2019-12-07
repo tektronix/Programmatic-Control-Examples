@@ -7,6 +7,6 @@ Tektronix Oscilloscopes
 * **[Performance Real-Time Oscilloscopes](./PerformanceScopes)**
 * **[Touchscreen Oscilloscopes & High Speed Digitizers](./TekSeriesScopes_HighSpeedDigitizers)**
 ----
-* **[Back to Home Page](./../README.md)**
+* **[Back to Home Page](./../../README.md)**
 ----
 

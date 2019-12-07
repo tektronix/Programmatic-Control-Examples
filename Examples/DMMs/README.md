@@ -8,7 +8,7 @@ DMM6500, DMM7510, Series 2000 and 2100, Other DMM's
   
 
 ----
-* **[Back to Home Page](./../README.md)**
+* **[Back to Home Page](./../../README.md)**
 
 ----
 

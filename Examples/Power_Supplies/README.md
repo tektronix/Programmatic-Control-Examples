@@ -8,7 +8,7 @@ Series 2200, Series 2260, Series 2280, Series 2300, Other Power Supplies
 
 
 ----
-* **[Back to Home Page](./../README.md)**
+* **[Back to Home Page](./../../README.md)**
 
 ----
 

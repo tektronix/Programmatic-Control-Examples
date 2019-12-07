@@ -5,5 +5,6 @@ TLA 6400, TLA7000 Series Logic Analyzers
 * **[no content.. yet!](./)**
 
 ----
-* **[Back to Home Page](./../README.md)**
+* **[Back to Home Page](./../../README.md)**
+
 ----

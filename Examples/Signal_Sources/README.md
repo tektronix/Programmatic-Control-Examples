@@ -24,7 +24,7 @@ AFG1000/2000/3000 Series, AWG5000/7000/70000 Series, TSG4100A Series, Keithley 3
 
 
 ----
-* **[Back to Home Page](./../README.md)**
+* **[Back to Home Page](./../../README.md)**
 ----
 
 

@@ -22,4 +22,4 @@ jobs:
         GO111MODULE: on
       run: |
         go get -u github.com/raviqqe/liche
-        $GOPATH/bin/liche -v -t 60 -x \b(\w*forum\w*)\b -r ${{ runner.workspace }}/Programmatic-Control-Examples
+        $GOPATH/bin/liche -v -t 60 -x \b\w*forum\w*\b -r ${{ runner.workspace }}/Programmatic-Control-Examples

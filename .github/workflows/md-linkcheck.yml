@@ -17,6 +17,9 @@ jobs:
       uses: actions/checkout@v1
 
     - name: md linkcheck
+      env:
+        GOPATH: ${{ runner.workspace }}
+        GO111MODULE: on
       run: |
-        GO111MODULE=on go get -u github.com/raviqqe/liche
+        go get -u github.com/raviqqe/liche
         $GOPATH/bin/liche -v -t 60 -r Programmatic-Control-Examples 

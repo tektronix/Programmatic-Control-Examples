@@ -16,7 +16,7 @@ print "or USB connection. NI-VISA or TekVISA must be installed. \n"
 while True:
     try:
         SoTmain.main()
-     except Exception as ex:
+    except Exception as ex:
         print "An unexpected error occured"
     print "\n\nWould you like to start another capture" \
           + " session? (Y/N)"

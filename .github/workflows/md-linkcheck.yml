@@ -19,4 +19,4 @@ jobs:
     - name: md linkcheck
       run: |
         GO111MODULE=on go get -u github.com/raviqqe/liche
-        liche -v -t 60 -r Programmatic-Control-Examples 
+        $GOPATH/bin/liche -v -t 60 -r Programmatic-Control-Examples 

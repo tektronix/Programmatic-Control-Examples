@@ -1,6 +1,7 @@
 [![TekMonogram](https://tektronix.github.io/media/tekmonogram.png)](https://github.com/tektronix)
 
-# Programmatic Control Examples [![Tektronix](https://tektronix.github.io/media/TEK-opensource_badge.svg)](https://github.com/tektronix) [![CodeFactor](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples/badge)](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples)
+# Programmatic Control Examples 
+[![Tektronix](https://tektronix.github.io/media/TEK-opensource_badge.svg)](https://github.com/tektronix) [![CodeFactor](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples/badge)](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples)
 > Code examples sorted by instrument, including examples taken from the User's Manuals. This is a good place to start off learning about programming for an instrument.
 
 This GitHub repository stores working and in-progress code examples. The code and content here is not officially supported unless otherwise stated by a Tektronix employee. It is offered for learning and collaboration purposes.
@@ -11,37 +12,37 @@ You may also recognize some of these examples from the [Tektronix and Keithley W
 
 ## Directory
 
-* **[Accessories](./Accessories)**
+* **[Accessories](./Examples/Accessories)**
 
-* **[Bit Error Rate Testers](./Bit_Error_Rate_Testers)**
+* **[Bit Error Rate Testers](./Examples/Bit_Error_Rate_Testers)**
 
-* **[Data Acquisition Systems and Switch Systems](./DAQs_and_Switches)**
+* **[Data Acquisition Systems and Switch Systems](./Examples/DAQs_and_Switches)**
 
-* **[Digital Multi Meters(DMM)](./DMMs)**
+* **[Digital Multi Meters(DMM)](./Examples/DMMs)**
 
-* **[Logic Analyzers](./Logic_Analyzers)**
+* **[Logic Analyzers](./Examples/Logic_Analyzers)**
 
-* **[Low Level Measurement & Sourcing](./Low_Level_Measurement_and_Sourcing)**
+* **[Low Level Measurement & Sourcing](./Examples/Low_Level_Measurement_and_Sourcing)**
 
-* **[Oscilloscopes](./Oscilloscopes)**
+* **[Oscilloscopes](./Examples/Oscilloscopes)**
 
-* **[Other Instruments](./Other_Instruments)**
+* **[Other Instruments](./Examples/Other_Instruments)**
 
-* **[Power Analyzers](./Power_Analyzers)**
+* **[Power Analyzers](./Examples/Power_Analyzers)**
 
-* **[Power Supplies](./Power_Supplies)**
+* **[Power Supplies](./Examples/Power_Supplies)**
 
-* **[Probes & Probe Accessories](./Probes)**
+* **[Probes & Probe Accessories](./Examples/Probes)**
 
-* **[Semiconductor Test Products](./Semiconductor_Test_Products)**
+* **[Semiconductor Test Products](./Examples/Semiconductor_Test_Products)**
 
-* **[Signal Sources](./Signal_Sources)**
+* **[Signal Sources](./Examples/Signal_Sources)**
 
-* **[Source Measurement Units (SMUs)](./SMUs)**
+* **[Source Measurement Units (SMUs)](./Examples/SMUs)**
 
-* **[Spectrum Analyzers](./Spectrum_Analyzers)**
+* **[Spectrum Analyzers](./Examples/Spectrum_Analyzers)**
 
-* **[Vector Network Analyzers](./Vector_Network_Analyzers)**
+* **[Vector Network Analyzers](./Examples/Vector_Network_Analyzers)**
 
 ## Downloading Files
 If you don't want to clone this entire repository, it's still possible to take individual files. Navigate to the directory holding the file you want and right-click the file to select _Save link as..._ or some variation on that depending on your browser. The file name will automatically populate and you can save the file where you'd like. Alternatively, you can open the file you want on GitHub and right-click "Raw" at the top of the file to accomplish the same thing.

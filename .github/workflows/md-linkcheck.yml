@@ -17,9 +17,9 @@ jobs:
       id: go
 
     - name: Check out HEAD commit of a PR into the Go module directory  
-      uses: actions/checkout@v2-beta
+      uses: actions/checkout@v2.0.0
       with:
-        ref: ${{ github.event.after }}
+        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: md linkcheck
       env:

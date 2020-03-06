@@ -58,7 +58,7 @@ Tektronix Product Line Marketing and Application Engineers:
 Licensed under the [Tektronix Sample License](https://www.tek.com/sample-license).
 
 ## Contributing<a name="contributing"></a>
-First, please consult the Tektronix [Code of Conduct](https://tektronix.github.io/Code-Of-Conduct/). Contributions in the form of new examples or bug fixes are welcome! Please contribute using [Github Flow](https://guides.github.com/introduction/flow/) and make sure you create your own branch from the `develop` branch, and when you are ready to push your changes, just submit a pull request with your changes against the `develop` branch. If you see something you're not sure is a bug, or if you'd like to request an example, please submit an Issue via GitHub.  
+First, please consult the Tektronix [Code of Conduct](https://tektronix.github.io/Code-Of-Conduct/). Contributions in the form of new examples or bug fixes are welcome! Please contribute using [Github Flow](https://guides.github.com/introduction/flow/) and make sure you create your own branch from the `master` branch, and when you are ready to push your changes, just submit a pull request with your changes against the `master` branch. If you see something you're not sure is a bug, or if you'd like to request an example, please submit an Issue via GitHub.  
 
 If you'd like help from a Tektronix engineer in developing an example, please submit a pull request with what you have so far placed in the proper part of the repository, including any new directories your example may need.
 

@@ -2,7 +2,7 @@
 
 Please review the [Contribution Guidelines](../README.md) before submitting.
 
-- [ ] Pulling against the `develop` branch (left side).
+- [ ] Pulling against the `master` branch (left side).
 - [ ] You have previously submitted a [Contributor License Agreement](../README.md) or have contacted a maintainer to request one.
 
 ### Type (Select only one)

@@ -1,7 +1,7 @@
 ''' 
 Author: FAE team Americas and COE (US, AU)
 Python 3 64-bit 
-NumPy 1.11.2, MatPlotLib 2.0.0, PyVISA 1.11
+PyVISA 1.11
 To get PyVISA: pip install pyvisa
 Tested on MSO5/MSO6 (FW 1.24)
 NI-VISA was used on PC.

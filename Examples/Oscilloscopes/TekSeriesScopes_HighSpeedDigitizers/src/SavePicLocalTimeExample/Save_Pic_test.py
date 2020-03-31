@@ -14,7 +14,6 @@ on a remote PC.
 # import the following modules
 import pyvisa # This allows high level VISA communications
 import time # This allows you to "sleep" from time to time
-import numpy as np # numpy allows easier array manipulation
 
 """#################SEARCH/CONNECT#################"""
 # The first commented out lines enable direct connection to a scope.

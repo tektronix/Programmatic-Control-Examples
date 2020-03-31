@@ -14,7 +14,6 @@ on a remote PC.
 # import the following modules
 import pyvisa # This allows high level VISA communications
 import time # This allows you to "sleep" from time to time
-import os # To enable Operating System functions (windows)
 import numpy as np # numpy allows easier array manipulation
 
 """#################SEARCH/CONNECT#################"""
@@ -148,4 +147,3 @@ Clear_Scope_Error_Register()
 
 #Clean up the Visa
 scope.close()
-

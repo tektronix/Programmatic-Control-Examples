@@ -20,7 +20,7 @@
 
 /* Title: Curvestream Usage Example - IVI VISA.NET
  * 
- * Date: 2019-10-02
+ * Date: 2020-10-22
  * 
  * Description: This example demonstrates how to use the curve stream feature
  * of the Series 5K, 7K and 70K scopes.  It first configures the waveform
@@ -44,11 +44,6 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
@@ -60,9 +55,15 @@ namespace CurvestreamExample
     public partial class frmMain : Form
     {
         private static int BUFFER_SIZE = 1024 * 1024 * 2;
-        //private MessageBasedSession TekScope = null;
         private IMessageBasedSession TekScope = null;
         private bool GatherCurves = false;
+
+        private enum SaveToDisk
+        {
+            None,
+            Text,
+            Binary
+        }
 
         public frmMain()
         {
@@ -76,16 +77,20 @@ namespace CurvestreamExample
                 TekScope.Dispose();
                 TekScope = null;
             }
+
+            cmbxSaveToDisk.SelectedIndex = 0;
         }
 
         private void cmdStartTest_Click(object sender, EventArgs e)
         {
-            System.DateTime CurveTime;
+            DateTime curveTime;
             float wfmPerSec = 0;
             System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
             string temp;
-            bool saveToDisk = cbxSaveToDisk.Checked;
-            StreamWriter SaveFile = null;
+            SaveToDisk saveToDisk = (SaveToDisk)cmbxSaveToDisk.SelectedIndex;
+            StreamWriter textFile = null;
+            FileStream binaryFile = null;
+            BinaryWriter binWriter = null;
 
             string SaveDirectory = txtSaveDirectory.Text;
             byte[] DataBuffer;
@@ -110,10 +115,10 @@ namespace CurvestreamExample
             lblWfmPerSec.Text = wfmPerSec.ToString("f");
             Application.DoEvents();  // Allow the front panel to redraw
 
-            if (saveToDisk)
+            if (saveToDisk != SaveToDisk.None)
             { 
                 // Check that the save directory is valid
-                if (!System.IO.Directory.Exists(SaveDirectory))
+                if (!Directory.Exists(SaveDirectory))
                 {
                     MessageBox.Show("Invalid save directory.  Please enter a valid directory then try again.", "Error: Invalid Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     cmdStartTest.Enabled = true;
@@ -225,20 +230,31 @@ namespace CurvestreamExample
                 }
                 if (!GatherCurves) break;
 
-                if (saveToDisk)
+                // Block header has been found.  Prepare to receive waveform data
+                if (saveToDisk != SaveToDisk.None)
                 {
                     // Create a file with the current date and time as the name
-                    CurveTime = DateTime.Now;
-                    string FileName = String.Format("{0}{1}-{2:D2}-{3:D2}_{4:D2}{5:D2}{6:D2}.{7:D3}.csv",
+                    curveTime = DateTime.Now;
+                    string FileName = String.Format("{0}{1}-{2:D2}-{3:D2}_{4:D2}{5:D2}{6:D2}.{7:D3}.{8}",
                         txtSaveDirectory.Text,
-                        CurveTime.Year,
-                        CurveTime.Month,
-                        CurveTime.Day,
-                        CurveTime.Hour,
-                        CurveTime.Minute,
-                        CurveTime.Second,
-                        CurveTime.Millisecond);
-                    SaveFile = new StreamWriter(FileName, false, Encoding.ASCII, BUFFER_SIZE * 10);
+                        curveTime.Year,
+                        curveTime.Month,
+                        curveTime.Day,
+                        curveTime.Hour,
+                        curveTime.Minute,
+                        curveTime.Second,
+                        curveTime.Millisecond,
+                        saveToDisk == SaveToDisk.Text ? "csv" : "dat");
+
+                    if (saveToDisk == SaveToDisk.Text)
+                    {
+                        textFile = new StreamWriter(FileName, false, Encoding.ASCII, BUFFER_SIZE * 10);
+                    }
+                    else // binary
+                    {
+                        binaryFile = new FileStream(FileName, FileMode.Create, FileAccess.Write, FileShare.None, BUFFER_SIZE * 8, FileOptions.SequentialScan);
+                        binWriter = new BinaryWriter(binaryFile);
+                    }
                 }
 
                 // Calculate the xvalue for the first point in the record
@@ -269,20 +285,39 @@ namespace CurvestreamExample
                         BytesRemaining = 0;
                     }
 
-                    // Convert byte values to floating point values then write to .csv file
+                    // Convert byte values to floating point values then write them to the file
                     foreach (byte DataPoint in DataBuffer)
                     {
                         yvalue = ((Convert.ToSingle((sbyte)DataPoint) - yoff) * ymult) + yzero;
-                        if (saveToDisk)
-                            SaveFile.WriteLine(xvalue.ToString() + "," + yvalue.ToString());
-                        // Note: Converting to .CSV is very time consuming operation.
-                        // Save in a binary format to maximize speed.  Highly recommended for waveforms >= 1 Million points.
+
+                        switch (saveToDisk)
+                        {
+                            case SaveToDisk.Binary:
+                                // Store the data in binary file as 32-bit floating point XY pairs
+                                binWriter.Write(xvalue);
+                                binWriter.Write(yvalue);
+                                break;
+                            case SaveToDisk.Text:
+                                textFile.WriteLine(xvalue.ToString() + "," + yvalue.ToString());
+                                // Note: Converting to .CSV is very time consuming operation.
+                                // Saving in a binary format is much faster and highly recommended for waveforms >= 1 Million points.
+                                break;
+                        }
                         xvalue += xinc;
                     }
                 }
 
-                if (saveToDisk)
-                    SaveFile.Close();
+                if (saveToDisk == SaveToDisk.Binary)
+                {
+                    binWriter.Close();
+                    binWriter.Dispose();
+                    binaryFile.Dispose();
+                }
+                else if (saveToDisk == SaveToDisk.Text)
+                {
+                    textFile.Close();
+                    textFile.Dispose();
+                }
                 
                 CurveCount++;
                 wfmPerSec = (float)CurveCount / ((float)stopWatch.ElapsedMilliseconds / (float)1000);

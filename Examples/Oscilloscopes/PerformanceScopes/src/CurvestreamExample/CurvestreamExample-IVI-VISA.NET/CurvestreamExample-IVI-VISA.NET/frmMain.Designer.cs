@@ -58,7 +58,8 @@ namespace CurvestreamExample
             this.txtSaveDirectory = new System.Windows.Forms.TextBox();
             this.lblWfmSec = new System.Windows.Forms.Label();
             this.lblWfmPerSec = new System.Windows.Forms.Label();
-            this.cbxSaveToDisk = new System.Windows.Forms.CheckBox();
+            this.cmbxSaveToDisk = new System.Windows.Forms.ComboBox();
+            this.lblSaveToDisk = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdStartTest
@@ -122,7 +123,7 @@ namespace CurvestreamExample
             // lblSaveDirectory
             // 
             this.lblSaveDirectory.AutoSize = true;
-            this.lblSaveDirectory.Location = new System.Drawing.Point(9, 116);
+            this.lblSaveDirectory.Location = new System.Drawing.Point(9, 121);
             this.lblSaveDirectory.Name = "lblSaveDirectory";
             this.lblSaveDirectory.Size = new System.Drawing.Size(80, 13);
             this.lblSaveDirectory.TabIndex = 7;
@@ -130,7 +131,7 @@ namespace CurvestreamExample
             // 
             // txtSaveDirectory
             // 
-            this.txtSaveDirectory.Location = new System.Drawing.Point(12, 132);
+            this.txtSaveDirectory.Location = new System.Drawing.Point(12, 137);
             this.txtSaveDirectory.Name = "txtSaveDirectory";
             this.txtSaveDirectory.Size = new System.Drawing.Size(242, 20);
             this.txtSaveDirectory.TabIndex = 8;
@@ -155,22 +156,35 @@ namespace CurvestreamExample
             this.lblWfmPerSec.Text = "0";
             this.lblWfmPerSec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cbxSaveToDisk
+            // cmbxSaveToDisk
             // 
-            this.cbxSaveToDisk.AutoSize = true;
-            this.cbxSaveToDisk.Location = new System.Drawing.Point(279, 134);
-            this.cbxSaveToDisk.Name = "cbxSaveToDisk";
-            this.cbxSaveToDisk.Size = new System.Drawing.Size(93, 17);
-            this.cbxSaveToDisk.TabIndex = 11;
-            this.cbxSaveToDisk.Text = "Save to Disk?";
-            this.cbxSaveToDisk.UseVisualStyleBackColor = true;
+            this.cmbxSaveToDisk.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxSaveToDisk.FormattingEnabled = true;
+            this.cmbxSaveToDisk.Items.AddRange(new object[] {
+            "None",
+            "Text (.csv)",
+            "Binary (.dat)"});
+            this.cmbxSaveToDisk.Location = new System.Drawing.Point(260, 136);
+            this.cmbxSaveToDisk.Name = "cmbxSaveToDisk";
+            this.cmbxSaveToDisk.Size = new System.Drawing.Size(94, 21);
+            this.cmbxSaveToDisk.TabIndex = 12;
+            // 
+            // lblSaveToDisk
+            // 
+            this.lblSaveToDisk.AutoSize = true;
+            this.lblSaveToDisk.Location = new System.Drawing.Point(257, 121);
+            this.lblSaveToDisk.Name = "lblSaveToDisk";
+            this.lblSaveToDisk.Size = new System.Drawing.Size(71, 13);
+            this.lblSaveToDisk.TabIndex = 13;
+            this.lblSaveToDisk.Text = "Save to Disk:";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 168);
-            this.Controls.Add(this.cbxSaveToDisk);
+            this.ClientSize = new System.Drawing.Size(373, 172);
+            this.Controls.Add(this.lblSaveToDisk);
+            this.Controls.Add(this.cmbxSaveToDisk);
             this.Controls.Add(this.lblWfmPerSec);
             this.Controls.Add(this.lblWfmSec);
             this.Controls.Add(this.txtSaveDirectory);
@@ -201,7 +215,8 @@ namespace CurvestreamExample
         private System.Windows.Forms.TextBox txtSaveDirectory;
         private System.Windows.Forms.Label lblWfmSec;
         private System.Windows.Forms.Label lblWfmPerSec;
-        private System.Windows.Forms.CheckBox cbxSaveToDisk;
+        private System.Windows.Forms.ComboBox cmbxSaveToDisk;
+        private System.Windows.Forms.Label lblSaveToDisk;
     }
 }
 

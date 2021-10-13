@@ -1,0 +1,12 @@
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.csproj.AssemblyReference.cache
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.Save_Frames.resources
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.Properties.Resources.resources
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.csproj.GenerateResource.cache
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.csproj.CoreCompileInputs.cache
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\bin\Debug\Save_Frames_Individually.exe.config
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\bin\Debug\Save_Frames_Individually.exe
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\bin\Debug\Save_Frames_Individually.pdb
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\bin\Debug\VisaWrapper.dll
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\bin\Debug\VisaWrapper.pdb
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.exe
+C:\Users\gaylandp\source\repos\Save_Frames_Individually\Save_Frames_Individually\obj\Debug\Save_Frames_Individually.pdb

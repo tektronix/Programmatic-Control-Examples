@@ -1,0 +1,4 @@
+# Save FastFrames Individually GUI Example
+
+This C# example shows one way to create a simple GUI to perform a releatively simple task, save FastFrame frames as individual csv files.  When you save a FastFrame waveform from the oscilloscope all the frames are saved as one waveform.  This makes it easy to identify, but often people just want to save the frames as individual csv files.  This example shows one way to do this for the 70000 series of oscilloscopes. 
+This program is designed to run on the oscilloscope and not a seperate PC, although that would be a relatively easy change to make if desired. When executed, it connects to the oscilloscope.  There is a box to chose the individual channels you want to save, and then a save button to save the files.  There is some logic to prevent trying to save data when no data exist. 

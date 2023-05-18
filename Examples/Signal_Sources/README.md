@@ -2,6 +2,7 @@
 AFG1000/2000/3000 Series, AWG5000/7000/70000 Series, TSG4100A Series, Keithley 3390 
 
 ## Directory
+
 ### AFG3000 examples
 
 | Example                                                      | Language                                                     |
@@ -12,6 +13,10 @@ AFG1000/2000/3000 Series, AWG5000/7000/70000 Series, TSG4100A Series, Keithley 3
 | **[Send Waveform to AFG3000](./src/AFG3KSendWaveformExample/cs)** | [![C#](https://img.shields.io/badge/-C%20Sharp-&?labelColor=3E434A&colorB=73BF44&logo=Microsoft)](https://github.com/dotnet/roslyn) |
 | **[Send Waveform to AFG3000](./src/AFG3KSendWaveformExample/matlab)** | [![MATLAB](https://img.shields.io/badge/-MATLAB-&?labelColor=3E434A&colorB=F05A22&logo=Mathworks)](https://www.mathworks.com/products/matlab.html?s_tid=hp_products_matlab) |
 
+### AFG31000 examples
+| Example                                                      | Language                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **[Send Arbitrary Waveform to AFG31k](./src/AFG31k_Send_Arb_Waveform/matlab/Afg31k_send_arb.m)** | [![MATLAB](https://img.shields.io/badge/-MATLAB-&?labelColor=3E434A&colorB=F05A22&logo=Mathworks)](https://www.mathworks.com/products/matlab.html?s_tid=hp_products_matlab) |
 
 
 ### AWG70000 examples

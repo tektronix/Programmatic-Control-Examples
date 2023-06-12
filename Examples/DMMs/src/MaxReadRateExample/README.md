@@ -34,7 +34,7 @@ Readings/sec: 112.11043911497228
 +0.5021E+0
 =>
 ```
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 https://forum.tek.com/viewtopic.php?f=580&t=138561

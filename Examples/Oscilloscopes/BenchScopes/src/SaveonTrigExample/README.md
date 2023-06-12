@@ -5,7 +5,7 @@ As a recent learning project, I have written a Save on Trigger program that is c
 
 Currently there are two parts of this program. SaveonTrig.py is the launcher, and used to loop the main program, as well as trap errors that would cause the program crash (typically issues with the VISAs resource list). SoTmain.py contains all the code that handles setting up the scope, capturing the selected data types and saving a log of the session.
 
-
+<!-- markdown-link-check-disable -->
 Resources
 --------
 Original Discussion:

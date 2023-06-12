@@ -2,7 +2,7 @@
 Original Attribution: Jeffrey M. - Tektronix Applications
 
 Very simple script for running the TDSHT3 test suite on Windows scopes, then saving the report to a user-defined directory.
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

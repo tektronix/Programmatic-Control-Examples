@@ -6,9 +6,9 @@ The script below creates a waveform with the RF Generic Signal waveform module i
 The code can also be found in this repository (along with the text file used as the pattern):
 https://github.com/tkzilla/visa_control_examples/tree/master/Python
 
-
+<!-- markdown-link-check-disable -->
 ![rf_generic_marker_data](https://forum.tek.com/download/file.php?id=24863)
-
+<!-- markdown-link-check-enable -->
 If you'd like to copy/paste the contents of the text file, they are below: 
 ```
 0
@@ -29,7 +29,7 @@ If you'd like to copy/paste the contents of the text file, they are below:
 0
 ```
 
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

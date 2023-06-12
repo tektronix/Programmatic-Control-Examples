@@ -74,6 +74,7 @@ namespace WFM_Timestamp
     }
 }
 ```
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion: https://forum.tek.com/viewtopic.php?f=580&t=140463

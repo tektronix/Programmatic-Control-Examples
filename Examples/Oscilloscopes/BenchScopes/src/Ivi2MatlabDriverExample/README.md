@@ -8,10 +8,10 @@ This example will lead you through installing the NI driver, recognizing where t
 First, download and install the NI Driver. [This](http://sine.ni.com/apps/utf8/niid_web_display.model_page?p_model_id=22954) is the relevant driver for my TBS1202B-EDU. You do not need to install the LabVIEW specific components, but you do need to install the LabWindows component, since that will create the necessary ".c" driver file.
 
 ----
-
+<!-- markdown-link-check-disable -->
 After installation, check that the appropriate driver files are in C:\Program Files (x86)\IVI\Drivers\. Mine are in C:\Program Files (x86)\IVI\Drivers\tktds1k2k and the directory looks like the attached image.
 ![example directory structure](https://forum.tek.com/download/file.php?id=24621)
-
+<!-- markdown-link-check-enable -->
 ----
 
 Once you have verified that, you can start up Matlab. [This link](https://www.mathworks.com/help/instrument/makemid.html) describes how to convert the ".c" driver to a MATLAB ".mdd" driver via the "makemid" function. When you have created the MATLAB driver, you can begin making use of it in the Instrument Toolbox or MATLAB Command Line. The attached .m file is an example of creating the driver and using the driver functions to plot a waveform in Command Line.

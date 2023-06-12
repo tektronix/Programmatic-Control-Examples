@@ -32,7 +32,7 @@ writing: "data:define EMEM,12"
 disconnecting...
 done
 ```
-
+<!-- markdown-link-check-disable -->
 NI IO Trace and AFG2021 display verification:
 ![AFG](https://forum.tek.com/download/file.php?id=24724)
 

@@ -1,4 +1,8 @@
-[![Teklogo ](https://tektronix.github.io/media/tektronix-logoFull.png)](https://github.com/tektronix)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://theme.tekcloud.com/prod/github/tek-logo-round-dark-mode.png" width="100px">
+  <source media="(prefers-color-scheme: light)" srcset="https://theme.tekcloud.com/prod/github/tek-logo-round-light-mode.png" width="100px">
+  <img alt="Tek Logo" src="https://theme.tekcloud.com/prod/github/tek-logo-round-light-mode.png" width="100px">
+</picture>
 
 TEKTRONIX SAMPLE SOURCE CODE LICENSE AGREEMENT
 

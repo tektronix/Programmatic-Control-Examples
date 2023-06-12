@@ -1,15 +1,19 @@
-[![TekMonogram](https://tektronix.github.io/media/tekmonogram.png)](https://github.com/tektronix)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://theme.tekcloud.com/prod/github/tek-logo-round-dark-mode.png" width="100px">
+  <source media="(prefers-color-scheme: light)" srcset="https://theme.tekcloud.com/prod/github/tek-logo-round-light-mode.png" width="100px">
+  <img alt="Tek Logo" src="https://theme.tekcloud.com/prod/github/tek-logo-round-light-mode.png" width="100px">
+</picture>
 
 # Programmatic Control Examples 
-[![Tektronix](https://tektronix.github.io/media/TEK-opensource_badge.svg)](https://github.com/tektronix) [![CodeFactor](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples/badge)](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples) ![md-linkcheck-cron](https://github.com/tektronix/Programmatic-Control-Examples/workflows/md-linkcheck-cron/badge.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples/badge)](https://www.codefactor.io/repository/github/tektronix/programmatic-control-examples) ![md-linkcheck-cron](https://github.com/tektronix/Programmatic-Control-Examples/workflows/md-linkcheck-cron/badge.svg)
 > Code examples sorted by instrument, including examples taken from the User's Manuals. This is a good place to start off learning about programming for an instrument.
 
 This GitHub repository stores working and in-progress code examples. The code and content here is not officially supported unless otherwise stated by a Tektronix employee. It is offered for learning and collaboration purposes.
 
 Feel free to open a new issue for any questions or respond to questions by other members. Should you require a time-sensitive answer, please contact your local Tektronix support center [here](https://www.tek.com/support).
-
+<!-- markdown-link-check-disable -->
 You may also recognize some of these examples from the [Tektronix and Keithley Web Forums!](https://forum.tek.com/)
-
+<!-- markdown-link-check-enable -->
 ## Directory
 
 * **[Accessories](./Examples/Accessories)**
@@ -58,7 +62,7 @@ Tektronix Product Line Marketing and Application Engineers:
 Licensed under the [Tektronix Sample License](https://www.tek.com/sample-license).
 
 ## Contributing<a name="contributing"></a>
-First, please consult the Tektronix [Code of Conduct](https://tektronix.github.io/Code-Of-Conduct/). Contributions in the form of new examples or bug fixes are welcome! Please contribute using [Github Flow](https://guides.github.com/introduction/flow/) and make sure you create your own branch from the `master` branch, and when you are ready to push your changes, just submit a pull request with your changes against the `master` branch. If you see something you're not sure is a bug, or if you'd like to request an example, please submit an Issue via GitHub.  
+First, please consult the Tektronix [Code of Conduct](https://github.com/tektronix/.github/blob/main/CODE_OF_CONDUCT.md). Contributions in the form of new examples or bug fixes are welcome! Please contribute using [Github Flow](https://guides.github.com/introduction/flow/) and make sure you create your own branch from the `master` branch, and when you are ready to push your changes, just submit a pull request with your changes against the `master` branch. If you see something you're not sure is a bug, or if you'd like to request an example, please submit an Issue via GitHub.  
 
 If you'd like help from a Tektronix engineer in developing an example, please submit a pull request with what you have so far placed in the proper part of the repository, including any new directories your example may need.
 

@@ -16,7 +16,7 @@ AFG1000/2000/3000 Series, AWG5000/7000/70000 Series, TSG4100A Series, Keithley 3
 ### AFG31000 examples
 | Example                                                      | Language                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **[Send Arbitrary Waveform to AFG31k](./src/AFG31k_Send_Arb_Waveform/matlab/Afg31k_send_arb.m)** | [![MATLAB](https://img.shields.io/badge/-MATLAB-&?labelColor=3E434A&colorB=F05A22&logo=Mathworks)](https://www.mathworks.com/products/matlab.html?s_tid=hp_products_matlab) |
+| **[Send Arbitrary Waveform to AFG31k](./src/AFG31k_Send_Arb_Waveform/matlab/AFG31k_send_arb.m)** | [![MATLAB](https://img.shields.io/badge/-MATLAB-&?labelColor=3E434A&colorB=F05A22&logo=Mathworks)](https://www.mathworks.com/products/matlab.html?s_tid=hp_products_matlab) |
 
 
 ### AWG70000 examples

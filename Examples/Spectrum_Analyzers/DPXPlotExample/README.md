@@ -14,7 +14,7 @@ NOTE: The directory you save this data should be the same directory where the .m
 ![dpx_plot_matlab](dpx_plot_matlab.png)
 ![dpx_plot_svpc](dpx_plot_svpc.png)
 
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

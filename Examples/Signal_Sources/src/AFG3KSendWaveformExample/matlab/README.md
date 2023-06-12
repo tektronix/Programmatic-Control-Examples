@@ -28,7 +28,7 @@ disconnecting...
 
 done
 ```
-
+<!-- markdown-link-check-disable -->
 NI IO Trace correlation to AFG2021 display:
 ![afg2k_trace_data](https://forum.tek.com/download/file.php?id=24723)
 

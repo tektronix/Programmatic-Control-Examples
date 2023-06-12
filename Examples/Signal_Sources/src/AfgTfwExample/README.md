@@ -3,7 +3,7 @@ Original Attribution: bhensley
 
 This example was made to demonstrate that a user could read through an AFG3000 TFW file and send it from a PC to a remote AFG3000 via USB. This example is provided as-is and may be used as a guideline for those with AFG experiance.
 
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

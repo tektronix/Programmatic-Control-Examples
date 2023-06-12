@@ -13,7 +13,7 @@ AWG WFMs are defined in the AWG400/500/600 Series Programmer Manual Manual (070A
 ![demopng2](./demo2.png)
 ![demopng3](./demo3.png)
 ![demopng4](./demo4.png)
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion: https://forum.tek.com/viewtopic.php?f=580&t=141081

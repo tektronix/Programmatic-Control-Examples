@@ -2,7 +2,7 @@
 Original Attribution: Simon R - Tektronix Applications
 
 This example will demonstrate a simultaneous burst mode setup on an AFG3252
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 https://forum.tek.com/viewtopic.php?f=580&t=138979

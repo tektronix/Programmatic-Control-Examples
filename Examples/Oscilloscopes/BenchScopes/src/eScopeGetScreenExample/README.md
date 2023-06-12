@@ -4,10 +4,10 @@ Original Attribution: Dave W. - Tektronix Applications
 This example allows you to get a PNG screen shot image from eScope enabled oscilloscopes by reading it directly from the scope's web server. This example is based on the MATLAB example eScope MATLAB Socket Get Screen 1 that can also be found here on the forums.
 
 This example was tested and confirmed to work on the following models:
-• DPO4102 v2.30
-• DPO4104 v2.68
-• TDS3054B v3.41
-• TDS3054C v4.05
+ï¿½ DPO4102 v2.30
+ï¿½ DPO4104 v2.68
+ï¿½ TDS3054B v3.41
+ï¿½ TDS3054C v4.05
 This example should, in theory, work with any scope that has the eScope interface. However, future firmware may change the behavior of eScope which this example relies heavily on.
 
 
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 ```
 
 
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

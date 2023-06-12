@@ -2,7 +2,7 @@
 Original Attribution: Scott H
 
 This is a simple get raw data from scope and plot it example. Pretty much a Hello World.
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

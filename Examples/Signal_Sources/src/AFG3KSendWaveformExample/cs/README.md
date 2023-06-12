@@ -2,7 +2,7 @@
 Original Attribution: Scott H - Tektronix Applications
 
 This example will send a 12 sample point waveform to the Arbitrary Waveform editor of an AFG3000 through VISA commands
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

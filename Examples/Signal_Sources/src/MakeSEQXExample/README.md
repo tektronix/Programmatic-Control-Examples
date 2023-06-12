@@ -9,7 +9,7 @@ Python has built-in tools for XML files and ZIP archives:
 This example demonstrates of the ElementTree API and zipfile module to create a functioning SEXQ file. Numpy is used for creation of simplistic example vectors.
 
 See also: [Make WFMX (ElementTree API)](./../MakeWFMXExample)
-
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion: https://forum.tek.com/viewtopic.php?t=140633

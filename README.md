@@ -11,9 +11,9 @@
 This GitHub repository stores working and in-progress code examples. The code and content here is not officially supported unless otherwise stated by a Tektronix employee. It is offered for learning and collaboration purposes.
 
 Feel free to open a new issue for any questions or respond to questions by other members. Should you require a time-sensitive answer, please contact your local Tektronix support center [here](https://www.tek.com/support).
-
+<!-- markdown-link-check-disable -->
 You may also recognize some of these examples from the [Tektronix and Keithley Web Forums!](https://forum.tek.com/)
-
+<!-- markdown-link-check-enable -->
 ## Directory
 
 * **[Accessories](./Examples/Accessories)**

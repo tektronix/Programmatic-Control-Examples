@@ -89,7 +89,7 @@ namespace CurveQuery
                 for (int i = 0; i < rawData.Length; i++)
                 {
                     xval = t0 + (xinc * i);
-                    yval = ((double)rawData[i] - yoff) * ymult + yzero;
+                    yval = (((double)rawData[i] - yoff) * ymult) + yzero;
                     waveformData.Points.Add(new DataPoint(xval, yval));
                 }
 

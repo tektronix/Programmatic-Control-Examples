@@ -9,6 +9,7 @@ Compatible Instruments
 * DPO7000(C) Series Oscilloscopes
 * MSO/DSA/DPO 70000(B)(C)(DX)(SX) Series Oscilloscopes
 
+<!-- markdown-link-check-disable -->
 Resources
 ---------
 Original Discussion:

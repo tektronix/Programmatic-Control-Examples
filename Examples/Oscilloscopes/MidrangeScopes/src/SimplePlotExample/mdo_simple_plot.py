@@ -6,7 +6,7 @@
 # incompatible with TDS2k and TBS1k series (see tbs simple plot)
 
 import time # std module
-import visa # http://github.com/hgrecco/pyvisa
+import pyvisa as visa # http://github.com/hgrecco/pyvisa
 import matplotlib.pyplot as plt # http://matplotlib.org/
 import numpy as np # http://www.numpy.org/
 

@@ -156,7 +156,6 @@
             this.MinimumSize = new System.Drawing.Size(540, 420);
             this.Name = "frmCurveQuery";
             this.Text = "Curve Query Winforms Example";
-            this.Load += new System.EventHandler(this.frmCurveQuery_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -23,6 +23,8 @@ namespace CurveQuery
         {
             InitializeComponent();
 
+            dropDownCH.SelectedIndex = 0;
+
             channelColors = new Dictionary<string, OxyColor>()
             {
                 { "CH1", OxyColor.FromRgb(255, 247, 57) },
@@ -39,13 +41,19 @@ namespace CurveQuery
 
             try
             {
+                // Open connection to the instrument
                 scope = GlobalResourceManager.Open(txtVisaRsrcAddr.Text) as IMessageBasedSession;
+
+                // Good practice to flush the message buffers and clear the instrument status upon connecting.
                 scope.Clear();
                 scope.FormattedIO.WriteLine("*CLS");
+
+                // Query the instrument ID and display
                 scope.FormattedIO.WriteLine("*IDN?");
                 txtInstrumentID.Text = scope.FormattedIO.ReadLine().Trim();
                 Application.DoEvents(); // Allows the UI to update before this method returns
 
+                // Setup the data transfer settings
                 scope.FormattedIO.WriteLine($"DATA:SOUR {dropDownCH.Text}");
                 scope.FormattedIO.WriteLine("DAT:ENC RIB");     // Signed Binary LSB Format
                 scope.FormattedIO.WriteLine("DATA:WIDTH 2");    // 2 bytes per point
@@ -60,7 +68,6 @@ namespace CurveQuery
                 scope.FormattedIO.WriteLine("WFMO:XUNit?");
                 string xunits = scope.FormattedIO.ReadString().Trim();
 
-
                 // Query vertical scaling factors
                 scope.FormattedIO.WriteLine("WFMO:YMUlt?");
                 double ymult = Double.Parse(scope.FormattedIO.ReadString());
@@ -71,39 +78,43 @@ namespace CurveQuery
                 scope.FormattedIO.WriteLine("WFMO:YUNit?");
                 string yunits = scope.FormattedIO.ReadString();
 
-
                 // Fetch the raw waveform data
                 scope.FormattedIO.WriteLine("CURVE?");
                 short[] rawData = scope.FormattedIO.ReadLineBinaryBlockOfInt16();
 
-
-                // Convert the raw data to floating point values and plot
+                // Create an OxyPlot LineSeries to put the data into
                 LineSeries waveformData = new LineSeries();
                 waveformData.Title = dropDownCH.Text;
                 waveformData.StrokeThickness = 2;
                 waveformData.LineStyle = LineStyle.Solid;
                 waveformData.Color = channelColors[dropDownCH.Text];
 
+                // Convert the raw integer data to floating point values and load into the LineSeries
                 double t0 = (-pt_off * xinc) + xzero;
                 double xval, yval;
                 for (int i = 0; i < rawData.Length; i++)
                 {
+                    // Formula for creating X values
                     xval = t0 + (xinc * i);
+
+                    // Formula for creating Y values
                     yval = (((double)rawData[i] - yoff) * ymult) + yzero;
                     waveformData.Points.Add(new DataPoint(xval, yval));
                 }
 
-                // this should probably all go into the Load method
+                // Create a plot to display the LineSeries on
                 var waveformPlot = new PlotModel { Title = "Waveform Plot" };
                 waveformPlot.PlotType = PlotType.XY;
                 waveformPlot.Series.Add(waveformData);
 
+                // Add a legend to the plot
                 var legend = new OxyPlot.Legends.Legend();
                 legend.LegendBackground = OxyColor.FromRgb(255, 255, 255);
                 legend.LegendBorder = OxyColor.FromRgb(0,0,0);
                 legend.LegendBorderThickness = 1;
                 waveformPlot.Legends.Add(legend);
 
+                // Add Axis to the plot
                 OxyPlot.Axes.LinearAxis xAxis = new OxyPlot.Axes.LinearAxis();
                 xAxis.Position = OxyPlot.Axes.AxisPosition.Bottom;
                 xAxis.Unit = xunits;
@@ -116,6 +127,8 @@ namespace CurveQuery
 
                 waveformPlot.Axes.Add(xAxis);
                 waveformPlot.Axes.Add(yAxis);
+
+                // Load the plot into the plot view
                 plotView.Model = waveformPlot;
             }
             catch(Exception ex)
@@ -129,11 +142,6 @@ namespace CurveQuery
                     scope.Dispose();
                 }
             }
-        }
-
-        private void frmCurveQuery_Load(object sender, EventArgs e)
-        {
-            dropDownCH.SelectedIndex = 0;            
         }
     }
 }

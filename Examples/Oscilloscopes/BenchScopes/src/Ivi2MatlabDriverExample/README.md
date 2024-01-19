@@ -1,7 +1,7 @@
 # Convert IVI to MATLAB Driver and Read Waveform (TBS1kB-EDU)
 Original Attribution: Will D
 
-The purpose of this example is to demonstrate how to get a MATLAB driver for an instrument not listed in the MathWorks repository [here](https://www.mathworks.com/programs/products/instrument/instrument-drivers-search.html) but with a driver available via the IVI Foundation repository [here](http://www.ivifoundation.org/registered_drivers/driver_registry.aspx), such as [this driver](http://www.ivifoundation.org/registered_drivers/driver_registry.aspx) which I am using with a TBS1202B-EDU.
+The purpose of this example is to demonstrate how to get a MATLAB driver for an instrument not listed in the MathWorks repository [here](https://www.mathworks.com/hardware-support/instrument-control-toolbox/drivers-search.html?s_tid=srchtitle_site_search_3_instrument%20drivers&q=&page=1) but with a driver available via the IVI Foundation repository [here](https://www.ivifoundation.org/DriverRegistry/default.html), such as [this driver](http://sine.ni.com/apps/utf8/niid_web_display.download_page?p_id_guid=E3B19B3E94FE659CE034080020E74861) which I am using with a TBS1202B-EDU.
 
 This example will lead you through installing the NI driver, recognizing where that installation is and confirming its existence, then using the ".c" driver to make a MATLAB ".mdd" driver.
 

@@ -1,8 +1,8 @@
 # Performance Oscillocopes
-MSO/DPO5000/B, DPO7000/C, DSA70000/B/C/D, and MSO700000/C/DX
+MSO/DPO5000/B, DPO7000/C, DSA70000/B/C/D, MSO70000/C/DX and DPO70000SX Series Oscilloscopes
 
 ## Directory
-####  MSO/DPO5000/B, DPO7000/C, DSA70000/B/C/D, and MSO70000/C/DX, DPO70000/B/C/D/DX/SX Series Digital Oscilloscope Examples
+####  MSO/DPO5000/B, DPO7000/C, DSA70000/B/C/D, MSO/DPO70000/C/DX and DPO70000SX Series Digital Oscilloscope Examples
 
 | Example                                                      | Language                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -13,6 +13,7 @@ MSO/DPO5000/B, DPO7000/C, DSA70000/B/C/D, and MSO700000/C/DX
 | **[Save FastFrame as Individual csv, GUI Example](./src/Save_Frames_Individually)** | [![C Sharp](https://img.shields.io/badge/-C%20Sharp-&?labelColor=3E434A&colorB=73BF44&logo=Microsoft)](https://github.com/dotnet/roslyn) |
 | **[Fetch Waveform Data Example](./src/FetchWaveformDataExample)** | [![Python 3.7](https://img.shields.io/badge/python-3.7-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-370/) |
 | **[Curve Query (Fetch Waveform) Windows Forms Example](../TekSeriesScopes_HighSpeedDigitizers/src/CSharpCurveQueryWinforms)** | [![C Sharp](https://img.shields.io/badge/-C%20Sharp-&?labelColor=3E434A&colorB=73BF44&logo=Microsoft)](https://github.com/dotnet/roslyn) |
+| **[DPO70000SX Ultrasync Time-Sync Mode Control Example](./src/DPO70000SX_UltrasyncTimeSyncModeControlExample)** | [![Python 3.11](https://img.shields.io/badge/python-3.11-&?labelColor=3E434A&colorB=006281&logo=python)](https://www.python.org/downloads/release/python-3118/) |
 
 
 

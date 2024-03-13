@@ -54,7 +54,6 @@ If you don't want to clone this entire repository, it's still possible to take i
 ## Maintainers
 Tektronix Product Line Marketing and Application Engineers: 
 
-+ Brian Hensley: [bhensley86](https://github.com/bhensley86)
 + Jeffrey Miller: [bit-lift](https://github.com/bit-lift)
 + Carl Murdock: [cbmurdock](https://github.com/cbmurdock)
 

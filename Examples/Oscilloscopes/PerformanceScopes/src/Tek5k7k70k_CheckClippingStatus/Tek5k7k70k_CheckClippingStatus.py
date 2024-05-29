@@ -69,8 +69,8 @@ def CheckClippingExample():
     print(scope.query('*IDN?'))
     
     print('Checking Clipping Status...')
-    isClipping = Tek5k7k70k_CheckClipping(scope, 'CH1')
-    print(f'Clipping?: {isClipping}')
+    isClipping, clipDirection = Tek5k7k70k_CheckClipping(scope, 'CH1')
+    print(f'Clipping?: {isClipping}, ' + clipDirection)
 
     scope.close()
     rm.close()

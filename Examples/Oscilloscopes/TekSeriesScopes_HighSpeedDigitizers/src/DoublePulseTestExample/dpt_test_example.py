@@ -3,16 +3,16 @@
 # * ---------------------------------------------------------------------------------------------------------
 # * Module Name:    dpt_test_auto_publish.py
 # * Module Type:    Python scripts
-# * Module Rev:     1.4                       
+# * Module Rev:     1.5                       
 # * Module Author:  Tektronix
 # * Module Input:   Refer to the "User input settings"
 # * Module Output:  
 # * Description:    A WBG-DPT automation test demo
 # *                 Vgs, Vds and Id (3 signals) are requested.
-# * Comments:       If there is strange situation happens, there are several delay time.sleep() 
-# *                 in the scripts can be prolonged.
-# *                 If the efficiency is not good enough, the delay between each step can also be shrinked 
-# *                 according to the real user case
+# * Comments:       If there is strange situation happening, there are some delay time.sleep() 
+# *                 in the scripts can be adjusted.
+# *                 If the efficiency is not good enough, the time.sleep() between each step can also be  
+# *                 shrinked according to the real user case
 # * Examples:       python dpt_test_auto_publish.py
 # * ---------------------------------------------------------------------------------------------------------
 # * License:        https://www.tek.com/sample-license
@@ -46,20 +46,36 @@
 # * Notes:          Revision v1.4
 # *                 1. Modify the comments and debug codes for final publication;
 # * ---------------------------------------------------------------------------------------------------------
+# * Date:		    2024-Jun-6
+# * Notes:          Revision v1.5
+# *                 1. Adding time out input to the wait_for_scope_free(time_out_sec) function;
+# *                 2. Adding 2 time delay command (time.sleep(1)) in the beginning and end of 
+# *                    wait_for_scope_free(time_out_sec);
+# *                 3. Comments print('all event messages: {}'.format(r)) in read_wfm_vertical()
+# *                 4. Adding time.sleep(1) in the 3rd line of wait_for_scope_acq_stop_or_timeout()
+# *                 5. Remove DUT type setting scope.write('MEASUrement:WBG:PDEVice MOSFET')
+# *                 6. Adding MATH channel defination in # Set the WBG-DPT test items block
+# *                    scope.write('MATH:' + id_mea_str + ':DEFine \"' + id_chn_str + '\"')
+# *                 7. Adding current offset compensation condition to script (2 locations) 
+# *                    if id_zero_gate_beg != id_zero_gate_end:
+# *                 8. Delete the status checking
+# *                    r = int(scope.query('*esr?'))
+# *                    r = scope.query('allev?').strip()
+# *                 9. Put the customer settings in an order with 2 groups (basic/advanced)
+# * ---------------------------------------------------------------------------------------------------------
 # * Date:		    month/day/year    
 # * Notes:
 # ***********************************************************************************************************
 
 # ----------------------------------------------------
 # User input settings
-
+# ----------------------------------------------------
+# Basic settings
 # Oscilloscope IP address
 scope_ip = '192.168.3.159'
 afg_ip = '192.168.3.216'
 visa_address_scope = 'TCPIP0::' + scope_ip + '::inst0::INSTR'
 visa_address_afg = 'TCPIP0::' + afg_ip + '::inst0::INSTR'
-# If reset the scope settings to default settings before running the tests
-rst_scope_ena = 1
 # Channel number, one of 1 - 8
 # Set Vgs channel number
 vgs_chn = 1
@@ -67,9 +83,34 @@ vgs_chn = 1
 vds_chn = 2
 # Set Id channel number
 id_chn = 3
+# AFG output amplitude with the high-z load mode (unit: volt)
+afg_output_h = 5
+afg_output_l = 0
+# pulse width, unit : seconds, if recond_length > 0, those data won't be used
+pulse_1_width = 5e-6
+pulse_1_gap = 10e-6
+pulse_2_width = 2e-6
+pulse_2_gap = 10e-6
+# The maximum reference amplitude of Vgs/Vds/Id will be used to initialize the vertical scale settings in the auto scale beginning
+# vgs_amplitude, vds_amplitude, id_amplitude is just rough vale, not need to be very acurate.
+# But if the trig_lvl set to 0, then vgs_amplitude should be a liitle bit accurate since the trigger level will be calculated from it.
+# Vgs voltage amplitude, unit : V
+vgs_amplitude = 5
+# Vds voltage amplitude, unit : V
+vds_amplitude = 1000
+# Id current amplitude
+# unit : A (with current probe connected)
+# unit : V (with voltage probe connected, then math channel with alternate unit should be enabled)
+# But when voltage probe connected, id_amplitude is still the original voltage unit, not the alternate unit
+id_amplitude = 500
+# ----------------------------------------------------
+# Advanced settings
+# If reset the scope settings to default settings before running the tests
+rst_scope_ena = 1
 # Enbale math channel for the Id calculation, 0 = disable math channel
 # When id_math_chn is not 0, Id channel zero compenstation is enabled (E.g. Rogowski coil 0v offset)
-# 0 = math disabled 1 = Math1, 2 = Math2, 3 = Math3, 4 = Math4, ... 100 = Math100, ...
+# 0 = math disabled 1 = Math1, 2 = Math2, 3 = Math3, 4 = Math4, ... 99 = Math99 
+# Math100 is reserved for current DC offset calculation. Please do not set the id_math_chn to 100
 id_math_chn = 0
 # If id_math_chn > 0, gating range for offset current calculation
 # Relative location of entire record length for calculating id offset value.
@@ -96,32 +137,12 @@ sample_rate = 12.5e9
 recond_length = 0
 # Horizontal position, unit : % (if the setting is less than 0, then use scripts default setting 25, which means 25%)
 horizontal_position = 25;
-# AFG output amplitude with the high-z load mode (unit: volt)
-afg_output_h = 5
-afg_output_l = 0
-# pulse width, unit : seconds, if recond_length > 0, those data won't be used
-pulse_1_width = 5e-6
-pulse_1_gap = 10e-6
-pulse_2_width = 2e-6
-pulse_2_gap = 10e-6
 # If enable auto scale to change the veritcal settings
 # To enable auto scale, both autoset_vertical_ena and separated channel enable flag need to be set to 1
 autoset_vertical_ena = 1
 autoset_vgs_ena = 1
 autoset_vds_ena = 1
 autoset_id_ena  = 1
-# The maximum reference amplitude of Vgs/Vds/Id will be used to initialize the vertical scale settings in the auto scale beginning
-# vgs_amplitude, vds_amplitude, id_amplitude is just rough vale, not need to be very acurate.
-# But if the trig_lvl set to 0, then vgs_amplitude should be a liitle bit accurate since the trigger level will be calculated from it.
-# Vgs voltage amplitude, unit : V
-vgs_amplitude = 5
-# Vds voltage amplitude, unit : V
-vds_amplitude = 1000
-# Id current amplitude
-# unit : A (with current probe connected)
-# unit : V (with voltage probe connected, then math channel with alternate unit should be enabled)
-# But when voltage probe connected, id_amplitude is still the original voltage unit, not the alternate unit
-id_amplitude = 500
 # Manual settings of vertical settings if the auto scale is not enabled
 # Scale unit: v/div or A/div, offset unit: v or A
 vgs_scale_manual = 3.0
@@ -145,10 +166,10 @@ trig_lvl = 0
 # Remote save (Save on the scope which is doing the measaurements)
 # If enable remote save
 remote_session_save_ena = 1
-remote_wfm_save_ena = 0
+remote_wfm_save_ena = 1
 remote_screen_save_ena = 1
 remote_table_save_ena = 1
-# Make sure the path end up with "/"
+# Please make sure the path exists and ends up with "/"
 path_scope = 'C:/Temp/WBG_DPT/'
 session_name = 'double_pulse_test_demo'
 result_table_name = 'result_table'
@@ -158,19 +179,19 @@ screen_ext = '.png'
 # local save (Save on the PC which is running the scripts)
 local_wfm_save_ena = 0
 local_table_save_ena = 0
-# Make sure the path end up with "/"
+# Please make sure the path exists and ends up with "/"
 path_local = 'C:/Temp/WBG_DPT/'
 # Make sure the file name with ".csv" in the end
 result_local_name = 'results.csv'
 # Test iteration number
 test_iter_num = 1
-# Test iteration interval (unit: second)
-# There is intrisic sleep time 4 seconds (9 seconds with math channel enabled) for each iteration.
-# the final iteration interval will be 4 (9) + test_iter_intvl seconds.
+# Test extra iteration delay/waitting time interval (unit: second)
 test_iter_intvl = 0
-# Wait until the scope become free or time out
-# The unit for the wait time in time out setting is second
+# Time out setting for waveform acquisition (unit: second)
+# Then time out, a new trigger will be sent to AFG and generate new pluses
 acq_wait_timeout_time = 10
+# Time our setting when waitting the scope become free (unit: second)
+wait_scope_free_timeout_time = 15
 
 # ----------------------------------------------------
 import pyvisa as visa
@@ -182,21 +203,26 @@ import csv
 # ************** Functions' definations **************
 
 # Wait until the scope become free
-def wait_for_scope_free():
+def wait_for_scope_free(time_out_sec):
+    time.sleep(1)
     r = scope.query('BUSY?')
     busy_flag = int(r)
     time.sleep(1)
-    while busy_flag != 0:
+    time_cnt = 0;
+    while (busy_flag != 0) & (time_cnt < time_out_sec):
        r = scope.query('BUSY?')
        busy_flag = int(r)
+       time_cnt = time_cnt + 1
        time.sleep(1)
+    time.sleep(1)
 
 # Wait until the acquistion status become stop or time out
 # The unit for the wait time in time out setting is second
-def wait_for_scope_acq_stop_or_timeout(time_wait):
+def wait_for_scope_acq_stop_or_timeout(time_wait_sec):
     r = scope.query('ACQuire:STATE?')
     acq_status = int(r)
-    for time_cnt in range(time_wait):
+    time.sleep(1)
+    for time_cnt in range(time_wait_sec):
         if acq_status != 0:
            r = scope.query('ACQuire:STATE?')
            acq_status = int(r)
@@ -238,16 +264,11 @@ def read_wfm_vertical(chn):
     print('Read channel wfm: ' + chn_str)
     # Query the waveform
     bin_wave = scope.query_binary_values('curve?', datatype='b', container=np.array)
-    # print('Query waveform data')
+    print('Query waveform data')
     # Get vertical resolution
     vscale = float(scope.query('wfmoutpre:ymult?')) # volts / level
     voff = float(scope.query('wfmoutpre:yzero?')) # reference voltage
     vpos = float(scope.query('wfmoutpre:yoff?')) # reference position (level)
-    # error checking
-    r = int(scope.query('*esr?'))
-    print('event status register: 0b{:08b}'.format(r))
-    r = scope.query('allev?').strip()
-    print('all event messages: {}'.format(r))
     # Calculate waveform
     unscaled_wave = np.array(bin_wave, dtype=np.uint8)
     unscaled_wave = np.reshape(unscaled_wave, (record, 2))
@@ -278,7 +299,7 @@ def vertical_scale_autoset(vgs_ena, vds_ena, id_ena, vgs_chn, vds_chn, id_chn, v
                 scope.write('MEASUrement:MEAS102:TYPE Minimum')
                 # Set up the measurement source
                 scope.write('MEASUrement:MEAS102:SOURCE ' + vgs_chn_str)
-                time.sleep(3)
+                time.sleep(1)  
             elif vgs_autoset_stage == 1: 
                 # Get the vertical settings using now
                 vgs_off = float(scope.query(vgs_chn_str + ':OFFSET?')) # # reference offset
@@ -350,7 +371,8 @@ def vertical_scale_autoset(vgs_ena, vds_ena, id_ena, vgs_chn, vds_chn, id_chn, v
                 scope.write('MEASUrement:MEAS104:TYPE Minimum')
                 # Set up the measurement source
                 scope.write('MEASUrement:MEAS104:SOURCE ' + vds_chn_str)
-                time.sleep(3)
+                # Wait until the measurement data are updated
+                time.sleep(1)  
             elif vds_autoset_stage == 1: 
                 # Get the vertical settings using now
                 vds_off = float(scope.query(vds_chn_str + ':OFFSET?')) # # reference offset
@@ -424,7 +446,8 @@ def vertical_scale_autoset(vgs_ena, vds_ena, id_ena, vgs_chn, vds_chn, id_chn, v
                 scope.write('MEASUrement:MEAS106:TYPE Minimum')
                 # Set up the measurement source
                 scope.write('MEASUrement:MEAS106:SOURCE ' + id_chn_str)
-                time.sleep(3)
+                # Wait until the measurement data are updated
+                time.sleep(1)  
             elif id_autoset_stage == 1: 
                 # Get the vertical settings using now
                 id_off = float(scope.query(id_chn_str + ':OFFSET?')) # # reference offset
@@ -497,11 +520,13 @@ def vertical_scale_autoset(vgs_ena, vds_ena, id_ena, vgs_chn, vds_chn, id_chn, v
            ((id_autoset_stage  == 0) & (id_ena  == 1)) :
             scope.write('MEASUrement:ADDNew \"MEAS1\"')
             scope.write('MEASUrement:MEAS1:TYPe WBGEON')
+            # !!! Important !!!
             # Initialize the AFG configuration
-            # Make sure use the last measurement item number to create the trigger
-            # In this demo, the last measurement one is number 1, so MEAS1 will be used
-            # In V2.4.4, the 'WBGGSTIM' uses the last measurement items's AFG settings as the AFG output pulse settings
+            # The command 'MAINWINDOW:RRBITEM' will specifiy which measurement items's AFG will be used.
+            # Make sure the measurement index in 'MAINWINDOW:RRBITEM' is aligned with measurement index of AFG settings
+            # In this case, both of them have been set to 'MEAS1' since there is only one measurement item.
             print('AFG initialization...')
+            scope.write('MAINWINDOW:RRBITEM \"MEAS1\"')
             scope.write('MEASUrement:MEAS1:WBG:AFGaddress \"' + afg_ip + '\"')
             r = scope.query('MEASUrement:MEAS1:WBG:AFGaddress?')
             print('AFG IP address: ' + r)
@@ -527,7 +552,8 @@ def vertical_scale_autoset(vgs_ena, vds_ena, id_ena, vgs_chn, vds_chn, id_chn, v
             scope.write('MEASUrement:MEAS1:WBG:PG2Val ' + str(pulse_2_gap))
             # Setup configuration on connected AFG
             scope.write('MEASUrement:MEAS1:WBG:AFGSetup RUN')
-            time.sleep(5)
+            # Wait until the measurement data are updated
+            time.sleep(1)  
             if vgs_ena == 1:
                 vgs_autoset_stage = 1
             if vds_ena == 1:
@@ -553,11 +579,12 @@ def vertical_scale_autoset(vgs_ena, vds_ena, id_ena, vgs_chn, vds_chn, id_chn, v
                 # Generate a trigger event
                 scope.write('MEASUrement:AUTOset WBGGSTIM')
                 print('AFG re-triggered')
-        time.sleep(3)
+        
+        # Wait until the measurement data are updated
+        wait_for_scope_free(wait_scope_free_timeout_time)    
 
 # ----------------------------------------------------
 # ************** Main application start **************
-
 
 t_start = time.perf_counter()
 
@@ -580,7 +607,7 @@ if rst_scope_ena:
     scope.write('*rst')
     t1 = time.perf_counter()
     # Wait until the scope become free
-    wait_for_scope_free()
+    wait_for_scope_free(wait_scope_free_timeout_time)
     t2 = time.perf_counter()
     print('Reset time: {}'.format(t2 - t1))
 
@@ -740,20 +767,21 @@ print('Acquisition stopped')
 scope.write('MEASUrement:DELETEALL')
 # Add measurements
 if id_math_chn > 0:
-    scope.write('MEASUrement:ADDNew \"MEAS100\"')
-    scope.write('MEASUrement:MEAS100:TYPe MEAN')
-    scope.write('MEASUrement:MEAS100:SOUrce1 ' + id_chn_str)
-    scope.write('MEASUrement:MEAS100:GATing:GLOBal OFF')
-    scope.write('MEASUrement:MEAS100:GATing TIME')
-    herizontal_time_beg = 0 - int(horizontal_position * recond_length / 100) / sample_rate
-    id_gate_time_beg = int(id_zero_gate_beg * recond_length) / sample_rate + herizontal_time_beg
-    id_gate_time_end = int(id_zero_gate_end * recond_length) / sample_rate + herizontal_time_beg
-    scope.write('MEASUrement:MEAS100:GATing:STARTtime ' + str(id_gate_time_beg))
-    scope.write('MEASUrement:MEAS100:GATing:ENDtime ' + str(id_gate_time_end))
     id_mea_str = 'MATH' + str(id_math_chn)
+    scope.write('MATH:' + id_mea_str + ':DEFine \"' + id_chn_str + '\"')
+    if id_zero_gate_beg != id_zero_gate_end:
+        scope.write('MEASUrement:ADDNew \"MEAS100\"')
+        scope.write('MEASUrement:MEAS100:TYPe MEAN')
+        scope.write('MEASUrement:MEAS100:SOUrce1 ' + id_chn_str)
+        scope.write('MEASUrement:MEAS100:GATing:GLOBal OFF')
+        scope.write('MEASUrement:MEAS100:GATing TIME')
+        herizontal_time_beg = 0 - int(horizontal_position * recond_length / 100) / sample_rate
+        id_gate_time_beg = int(id_zero_gate_beg * recond_length) / sample_rate + herizontal_time_beg
+        id_gate_time_end = int(id_zero_gate_end * recond_length) / sample_rate + herizontal_time_beg
+        scope.write('MEASUrement:MEAS100:GATing:STARTtime ' + str(id_gate_time_beg))
+        scope.write('MEASUrement:MEAS100:GATing:ENDtime ' + str(id_gate_time_end))
 else:
     id_mea_str = id_chn_str
-
 # Create all test items in the measurement list
 scope.write('MEASUrement:ADDNew \"MEAS1\"')
 scope.write('MEASUrement:MEAS1:TYPe WBGEON')
@@ -777,9 +805,6 @@ scope.write('MEASUrement:ADDNew \"MEAS10\"')
 scope.write('MEASUrement:MEAS10:TYPe WBGTOFF')
 scope.write('MEASUrement:ADDNew \"MEAS11\"')
 scope.write('MEASUrement:MEAS11:TYPe WBGDDT')
-
-# Set DUT type to MOSFET
-scope.write('MEASUrement:WBG:PDEVice MOSFET')
 
 # Set measurements signal sources
 scope.write('MEASUrement:MEAS1:SOUrce1 ' + vds_chn_str)
@@ -843,41 +868,41 @@ if local_table_save_ena != 0:
         f.write('e_on,e_off,v_peak,i_peak,td_on,td_off,t_r,t_f,t_on,t_off\n')
 
 # Wait until the scope become free
-wait_for_scope_free()
+wait_for_scope_free(wait_scope_free_timeout_time)
 
 # !!! Important !!!
 # Initialize the AFG configuration
-# Make sure use the last measurement item number to create the AFG trigger
-# In this demo, the last measurement one is number 11, so MEAS11 will be used to configure AFG settings
-# In V2.4.4, the 'WBGGSTIM' uses the last measurement items's AFG settings as the AFG output pulse settings
+# The command 'MAINWINDOW:RRBITEM' will specifiy which measurement items's AFG will be used.
+# Make sure the measurement index in 'MAINWINDOW:RRBITEM' is aligned with measurement index of AFG settings
+# In this case, both of them have been set to 'MEAS1'. It can be set to 'MEAS2', ..., but they must be the same.
 print('AFG initialization...')
-scope.write('MEASUrement:MEAS11:WBG:AFGaddress \"' + afg_ip + '\"')
-r = scope.query('MEASUrement:MEAS11:WBG:AFGaddress?')
+scope.write('MAINWINDOW:RRBITEM \"MEAS1\"')
+scope.write('MEASUrement:MEAS1:WBG:AFGaddress \"' + afg_ip + '\"')
+r = scope.query('MEASUrement:MEAS1:WBG:AFGaddress?')
 print('AFG IP address: ' + r)
 # Test the AFG connection
-scope.write('MEASUrement:MEAS11:WBG:AFGSetup CONNECT')
+scope.write('MEASUrement:MEAS1:WBG:AFGSetup CONNECT')
 # Sets the generator type for WBG measurements
-scope.write('MEASUrement:MEAS11:WBG:GTYPe AFG31000')
+scope.write('MEASUrement:MEAS1:WBG:GTYPe AFG31000')
 # Set AFG output high level
-scope.write('MEASUrement:MEAS11:WBG:HIGH ' + str(afg_output_h))
+scope.write('MEASUrement:MEAS1:WBG:HIGH ' + str(afg_output_h))
 # Set AFG output low level
-scope.write('MEASUrement:MEAS11:WBG:LOW ' + str(afg_output_l))
+scope.write('MEASUrement:MEAS1:WBG:LOW ' + str(afg_output_l))
 # Set AFG output load type to high-z
-scope.write('MEASUrement:MEAS11:WBG:LOAD HIGHZ')
+scope.write('MEASUrement:MEAS1:WBG:LOAD HIGHZ')
 # Set AFG output pulses number to 2
-scope.write('MEASUrement:MEAS11:WBG:NPULs 2')
+scope.write('MEASUrement:MEAS1:WBG:NPULs 2')
 # Set AFG output pulse width for the 1st pulse
-scope.write('MEASUrement:MEAS11:WBG:PW1Val ' + str(pulse_1_width))
+scope.write('MEASUrement:MEAS1:WBG:PW1Val ' + str(pulse_1_width))
 # Set AFG output gap1 after the 1st pulse
-scope.write('MEASUrement:MEAS11:WBG:PG1Val ' + str(pulse_1_gap))
+scope.write('MEASUrement:MEAS1:WBG:PG1Val ' + str(pulse_1_gap))
 # Set AFG output gap2 after the 2nd pulse
-scope.write('MEASUrement:MEAS11:WBG:PW2Val ' + str(pulse_2_width))
+scope.write('MEASUrement:MEAS1:WBG:PW2Val ' + str(pulse_2_width))
 # Set AFG output gap2 after the 2nd pulse
-scope.write('MEASUrement:MEAS11:WBG:PG2Val ' + str(pulse_2_gap))
+scope.write('MEASUrement:MEAS1:WBG:PG2Val ' + str(pulse_2_gap))
 # Setup configuration on connected AFG
-scope.write('MEASUrement:MEAS11:WBG:AFGSetup RUN')
-
-    
+scope.write('MEASUrement:MEAS1:WBG:AFGSetup RUN')
+ 
 for test_cnt in range(test_iter_num):
 
     # Test iteration
@@ -900,16 +925,16 @@ for test_cnt in range(test_iter_num):
             # Generate a trigger event
             scope.write('MEASUrement:AUTOset WBGGSTIM')
             print('AFG re-triggered')
-        
+       
     if id_math_chn > 0:
-        id_offset_str = scope.query('MEASUrement:MEAS100:SUBGROUP:RESUlts:CURRentacq:MEAN? \"INPUT\"')
-        print('Id offset measured: ' + id_offset_str + ' A')
-        id_offset = float(id_offset_str)
-        scope.write('MATH:' + id_mea_str + ':DEFine \"' + id_chn_str + '-' + str(id_offset) + '\"')
-        # Wait until the data are updated due to the math change
-        time.sleep(5)
+        if id_zero_gate_beg != id_zero_gate_end:
+            id_offset_str = scope.query('MEASUrement:MEAS100:SUBGROUP:RESUlts:CURRentacq:MEAN? \"INPUT\"')
+            print('Id offset measured: ' + id_offset_str + ' A')
+            id_offset = float(id_offset_str)
+            scope.write('MATH:' + id_mea_str + ':DEFine \"' + id_chn_str + '-' + str(id_offset) + '\"')
         
-    time.sleep(3)    
+    # Wait until the measurement data are updated 
+    wait_for_scope_free(wait_scope_free_timeout_time)    
     
     # Read the result
     e_on = float(scope.query('MEASUrement:MEAS1:SUBGROUP:RESUlts:CURRentacq:MEAN? "EON"'))
@@ -950,7 +975,6 @@ for test_cnt in range(test_iter_num):
     print('d/dt    :' + str(d_dt))
     print('------------------------------')
     
-
     # Save waveforms, table, screen on remote disk (scope)
     if remote_table_save_ena != 0:
         scope.write('SAVe:EVENTtable:MEASUrement ' + '\"' + path_scope + result_table_name + '_' + str(test_cnt) + result_table_ext + '\"')
@@ -1010,7 +1034,7 @@ for test_cnt in range(test_iter_num):
                 '\n')
                 
     time.sleep(test_iter_intvl)
-      
+
 scope.close()
 rm.close()
 

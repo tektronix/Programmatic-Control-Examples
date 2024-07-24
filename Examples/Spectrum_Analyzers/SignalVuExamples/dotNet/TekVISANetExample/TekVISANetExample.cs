@@ -19,11 +19,11 @@ namespace TekVISANetExample
         private static void Main(string[] args)
         {
             //const string rsaAddress = "127.0.0.1";
-			const string rsaAddress = "GPIB8::1::INSTR";
+            const string rsaAddress = "GPIB8::1::INSTR";
             var rsa = new VISA();
             try
             {
-				rsa.Open(rsaAddress);
+                rsa.Open(rsaAddress);
                 //rsa.Open(string.Format("TCPIP::{0}::INSTR", rsaAddress));
                 if (rsa.Status != TekVISADefs.Status.SUCCESS)
                 {

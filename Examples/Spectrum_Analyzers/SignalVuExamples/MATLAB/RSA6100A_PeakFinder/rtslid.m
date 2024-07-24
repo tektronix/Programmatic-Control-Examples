@@ -154,7 +154,7 @@ if (length(params2)==0),    % If there are no sliders already,
         h = axes('Position',[0.03 0.1 0.03 0.8]);
     end
 
-	if ischar(back),        % Any string wll cause the background to be 'jet'
+    if ischar(back),        % Any string wll cause the background to be 'jet'
         try
             eval(['colormap(''',back,''');']);
         catch
@@ -170,20 +170,20 @@ if (length(params2)==0),    % If there are no sliders already,
         image(m);
     end
             
-	title(label);
+    title(label);
     
     % Make the slider look nice
     set(h,'XTick',[],'XTickLabel','','YTick',[],'YTickLabel','','YDir','normal','LineWidth',2);
-	set(fig,'DoubleBuffer','on');   % Double buffering required for smooth display
+    set(fig,'DoubleBuffer','on');   % Double buffering required for smooth display
 
     % Draw the small black box that indicates current position
     ind = patch([0 0 10 10],[def2-20 def2+20 def2+20 def2-20],[0.25 0.25 0.25]);axis tight;
 
-	params.mdown = 0;   % Initialise mousedown state
-	params.ind = ind;   % Save the handle to the position indicator
-	params.funhand{1} = f;  % Save the function handle or string
-	params.h = h;       % Save the handle to this slider
-	params.h2 = hh;     % Save the handle to the plotting axes (for this slider)
+    params.mdown = 0;   % Initialise mousedown state
+    params.ind = ind;   % Save the handle to the position indicator
+    params.funhand{1} = f;  % Save the function handle or string
+    params.h = h;       % Save the handle to this slider
+    params.h2 = hh;     % Save the handle to the plotting axes (for this slider)
     if exist('scale'),  % Set the output limits
         params.scale{1} = scale;
     else
@@ -215,18 +215,18 @@ else
         
         % Make the slider look nice
         set(h,'XTick',[],'XTickLabel','','YTick',[],'YTickLabel','','YDir','normal','LineWidth',2);
-		set(fig,'DoubleBuffer','on');
-	
+        set(fig,'DoubleBuffer','on');
+    
         % Draw the small black box that indicates current position
         ind = patch([0 0 10 10],[def2-20 def2+20 def2+20 def2-20],[0.25 0.25 0.25]);axis tight;
  
         % Copy old parameters and concatenate new values
         params.mdown = [params2.mdown 0];   % Initialise new mousedown state
-		params.ind = [params2.ind ind];     % Save the handle to the position indicator
-		params.funhand = params2.funhand;   % Save the function handle or string
+        params.ind = [params2.ind ind];     % Save the handle to the position indicator
+        params.funhand = params2.funhand;   % Save the function handle or string
         params.funhand{params.noslids} = f;
-		params.h = [params2.h h];           % Save the handle to this slider
-		params.h2 = [params2.h2 hh];        % Save the handle to the plotting axes (for this slider)
+        params.h = [params2.h h];           % Save the handle to this slider
+        params.h2 = [params2.h2 hh];        % Save the handle to the plotting axes (for this slider)
         for l=1:(params.noslids-1),
             params.scale{l} = params2.scale{l};
         end
@@ -351,28 +351,28 @@ function butmotfcn1(in,varargin)
 
 params = get(gcf,'UserData'); % Get the saved parameters
 for l=1:params.noslids,
-	if (params.mdown(l)),                       % If mouse was clicked on slider l
-		p = get(params.h(l),'CurrentPoint');    % Get mouse position relative to the slider axis
-		dy = p(3)-params.old;                   % Calculate change in mouse position
-		if (abs(dy)>0),                         % If mouse has moved
-			p2 = params.current(l)+dy;          % Find new slider position
-			params.old = p(3);                  % Save this new mouse position
-			p2=max([0 min([1000 p2])]);         % Constrain position
-			params.current(l) = p2;             % Save current slider position
-			scal = params.scale{l};             % Get the lower and upper limits
-			out = (p2*(scal(2)-scal(1))/1000);  % Convert from [0 to 1000] to new scale
-			out = out+scal(1);
-			axes(params.h2(l));                 % Avoid plotting on the slider axis
-			if ischar(params.funhand{l}),       % If string passed as function
-			    eval(params.funhand{l});        % Evaluate the string
-			else                                % Else if function handle passed
-			    feval(params.funhand{l},out,params.h2(l));  % Perform function
-			end
-			set(params.ind(l),'YData',[p2-20 p2+20 p2+20 p2-20]);% Update position indicator
-			figure(params.fig);                 % Make sure focus returns to slider after plotting
-		end
-	end
-	set(gcf,'UserData',params); % Save all parameters
+    if (params.mdown(l)),                       % If mouse was clicked on slider l
+        p = get(params.h(l),'CurrentPoint');    % Get mouse position relative to the slider axis
+        dy = p(3)-params.old;                   % Calculate change in mouse position
+        if (abs(dy)>0),                         % If mouse has moved
+            p2 = params.current(l)+dy;          % Find new slider position
+            params.old = p(3);                  % Save this new mouse position
+            p2=max([0 min([1000 p2])]);         % Constrain position
+            params.current(l) = p2;             % Save current slider position
+            scal = params.scale{l};             % Get the lower and upper limits
+            out = (p2*(scal(2)-scal(1))/1000);  % Convert from [0 to 1000] to new scale
+            out = out+scal(1);
+            axes(params.h2(l));                 % Avoid plotting on the slider axis
+            if ischar(params.funhand{l}),       % If string passed as function
+                eval(params.funhand{l});        % Evaluate the string
+            else                                % Else if function handle passed
+                feval(params.funhand{l},out,params.h2(l));  % Perform function
+            end
+            set(params.ind(l),'YData',[p2-20 p2+20 p2+20 p2-20]);% Update position indicator
+            figure(params.fig);                 % Make sure focus returns to slider after plotting
+        end
+    end
+    set(gcf,'UserData',params); % Save all parameters
 end
 if (length(params.butmot)>0),   % Evaluate any extra ButMot functions passed to rtslid
     eval(params.butmot);

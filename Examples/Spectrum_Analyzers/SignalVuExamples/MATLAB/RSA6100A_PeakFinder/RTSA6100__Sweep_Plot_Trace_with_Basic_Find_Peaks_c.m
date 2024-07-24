@@ -37,7 +37,7 @@ global P
 %--------------------------------------------------------------------------
 % Change the IP addresses to match the IP address of your RSA before 
 % running the demo.
-RTSAIPAddr	= '192.168.1.113';  % Instrument TCP/IP address 
+RTSAIPAddr  = '192.168.1.113';  % Instrument TCP/IP address 
 %
 %
 %--------------------------------------------------------------------------

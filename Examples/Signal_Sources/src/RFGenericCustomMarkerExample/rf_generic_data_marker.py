@@ -90,7 +90,7 @@ wlength = int(awg.ask('wlist:waveform:length? {}'.format(wfmName.rstrip())))
 
 sampPerSym = int(sampRate/symRate)
 with open(fileName) as f:
-	raw = f.read().strip()
+    raw = f.read().strip()
 raw = raw.split('\n')
 markerValues = [int(i) for i in raw]
 

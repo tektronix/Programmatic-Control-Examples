@@ -10,24 +10,24 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisaWrapper", "..\..\..\OneDrive - Fortive\Documents\Retrieved files from 2000-2008\TDS Stuff\TDS Control\GUI prototyping in Visual Studio\VisaWrapper\VisaWrapper.csproj", "{DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B7F58C17-C9DF-41D2-BF24-6974083388E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7F58C17-C9DF-41D2-BF24-6974083388E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7F58C17-C9DF-41D2-BF24-6974083388E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7F58C17-C9DF-41D2-BF24-6974083388E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2C74A564-ABC1-4DD5-865F-A0A46748C697}
-	EndGlobalSection
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        Debug|Any CPU = Debug|Any CPU
+        Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        {B7F58C17-C9DF-41D2-BF24-6974083388E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {B7F58C17-C9DF-41D2-BF24-6974083388E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {B7F58C17-C9DF-41D2-BF24-6974083388E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {B7F58C17-C9DF-41D2-BF24-6974083388E5}.Release|Any CPU.Build.0 = Release|Any CPU
+        {DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {DD0CA08E-0836-47CF-A51A-C66C7B5CB79C}.Release|Any CPU.Build.0 = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(SolutionProperties) = preSolution
+        HideSolutionNode = FALSE
+    EndGlobalSection
+    GlobalSection(ExtensibilityGlobals) = postSolution
+        SolutionGuid = {2C74A564-ABC1-4DD5-865F-A0A46748C697}
+    EndGlobalSection
 EndGlobal

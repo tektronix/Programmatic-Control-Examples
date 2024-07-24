@@ -29,10 +29,10 @@ from enum import Enum
 import pyvisa as visa # https://pyvisa.readthedocs.io/en/latest/
 
 class ClippingStatus(Enum):
-	NotClipping = 0
-	Both = 1
-	Positive = 2
-	Negative = 3
+    NotClipping = 0
+    Both = 1
+    Positive = 2
+    Negative = 3
 
 
 def Tek5k7k70k_CheckClipping(vi : visa.resources.MessageBasedResource, channel : str = 'CH1') -> tuple[bool, ClippingStatus]:
@@ -77,4 +77,4 @@ def CheckClippingExample():
 
 # Only run the example if this script is the main script being run
 if __name__ == '__main__':
-	CheckClippingExample()
+    CheckClippingExample()

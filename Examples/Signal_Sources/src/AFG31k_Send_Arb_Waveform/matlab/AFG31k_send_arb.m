@@ -13,11 +13,11 @@ Instrument Control Toolbox v3.14
 NI-VISA v19.5
 AFG31000
 
-	***********************************************************
+    ***********************************************************
     *** Copyright 2023 Tektronix, Inc.                      ***
     *** See www.tek.com/sample-license for licensing terms. ***
     ***********************************************************
-	
+    
 Tektronix provides the following example "AS IS" without any guarantees
 or support.  This example is for instructional guidance only.
 %}

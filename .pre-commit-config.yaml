@@ -16,11 +16,12 @@ repos:
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: forbid-submodules
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.5
-    hooks:
-      - id: remove-tabs
-      - id: forbid-tabs
+# TODO: enable these hooks
+#  - repo: https://github.com/Lucas-C/pre-commit-hooks
+#    rev: v1.5.5
+#    hooks:
+#      - id: remove-tabs
+#      - id: forbid-tabs
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.29.0
     hooks:

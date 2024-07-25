@@ -18,7 +18,14 @@ ignore = [
 pydocstyle = {convention = "google"}
 # https://beta.ruff.rs/docs/rules/
 select = [
-  "ALL"
+  # "ALL"  # TODO: enable ALL
+  "E",
+  "F",
+  "I",
+  "N",
+  "PLE",
+  "Q",
+  "RUF"
 ]
 
 [tool.ruff.lint.isort]

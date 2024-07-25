@@ -6,20 +6,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFM-Timestamp", "WFM-Timestamp\WFM-Timestamp.csproj", "{AF51348B-7FB1-4426-B3BC-469FE5D53D8F}"
 EndProject
 Global
-    GlobalSection(SolutionConfigurationPlatforms) = preSolution
-        Debug|Any CPU = Debug|Any CPU
-        Release|Any CPU = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Release|Any CPU.Build.0 = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(SolutionProperties) = preSolution
-        HideSolutionNode = FALSE
-    EndGlobalSection
-    GlobalSection(ExtensibilityGlobals) = postSolution
-        SolutionGuid = {916229EE-E0FF-4CD7-8D4F-1F9102E59568}
-    EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF51348B-7FB1-4426-B3BC-469FE5D53D8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {916229EE-E0FF-4CD7-8D4F-1F9102E59568}
+	EndGlobalSection
 EndGlobal

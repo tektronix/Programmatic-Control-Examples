@@ -18,7 +18,7 @@
 # * License:        https://www.tek.com/sample-license
 # * ---------------------------------------------------------------------------------------------------------
 # * Revision History
-# * Date:           2023-Aug-08
+# * Date:		    2023-Aug-08
 # * Notes:          First revision (v1.0)
 # *                 Demo guildline
 # *                 1. Connect MSO5/6B AFG output to AFG31000 trigger input;
@@ -28,25 +28,25 @@
 # *                 4. Modify the user input settings in scripts;
 # *                 5. Run the scripts to start the demo
 # * ---------------------------------------------------------------------------------------------------------
-# * Date:           2023-Oct-10
+# * Date:		    2023-Oct-10
 # * Notes:          Revision v1.1
 # *                 1. Add automatical control of AFG with DPT control interface;
 # *                 2. Tested on V2.4.4 MSO5B/6B
 # * ---------------------------------------------------------------------------------------------------------
-# * Date:           2024-Jan-31
+# * Date:		    2024-Jan-31
 # * Notes:          Revision v1.2
 # *                 1. The AFG trigger/scope acquistion stuck issue has been resolved;
 # *                 2. Tested on V2.6.38 MSO5B/6B
 # * ---------------------------------------------------------------------------------------------------------
-# * Date:           2024-Mar-8
+# * Date:		    2024-Mar-8
 # * Notes:          Revision v1.3
 # *                 1. Modify the comments for final publication;
 # * ---------------------------------------------------------------------------------------------------------
-# * Date:           2024-Jun-5
+# * Date:		    2024-Jun-5
 # * Notes:          Revision v1.4
 # *                 1. Modify the comments and debug codes for final publication;
 # * ---------------------------------------------------------------------------------------------------------
-# * Date:           2024-Jun-6
+# * Date:		    2024-Jun-6
 # * Notes:          Revision v1.5
 # *                 1. Adding time out input to the wait_for_scope_free(time_out_sec) function;
 # *                 2. Adding 2 time delay command (time.sleep(1)) in the beginning and end of 
@@ -63,7 +63,7 @@
 # *                    r = scope.query('allev?').strip()
 # *                 9. Put the customer settings in an order with 2 groups (basic/advanced)
 # * ---------------------------------------------------------------------------------------------------------
-# * Date:           month/day/year    
+# * Date:		    month/day/year    
 # * Notes:
 # ***********************************************************************************************************
 

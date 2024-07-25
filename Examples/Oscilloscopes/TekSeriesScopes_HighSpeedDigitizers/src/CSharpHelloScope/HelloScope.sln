@@ -6,20 +6,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloScope", "HelloScope\HelloScope.csproj", "{95B654DA-72B0-434D-876C-DA660CDB3387}"
 EndProject
 Global
-    GlobalSection(SolutionConfigurationPlatforms) = preSolution
-        Debug|Any CPU = Debug|Any CPU
-        Release|Any CPU = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {95B654DA-72B0-434D-876C-DA660CDB3387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {95B654DA-72B0-434D-876C-DA660CDB3387}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {95B654DA-72B0-434D-876C-DA660CDB3387}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {95B654DA-72B0-434D-876C-DA660CDB3387}.Release|Any CPU.Build.0 = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(SolutionProperties) = preSolution
-        HideSolutionNode = FALSE
-    EndGlobalSection
-    GlobalSection(ExtensibilityGlobals) = postSolution
-        SolutionGuid = {F1974110-BCDD-47CC-B6BC-AADCA6FF6543}
-    EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95B654DA-72B0-434D-876C-DA660CDB3387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B654DA-72B0-434D-876C-DA660CDB3387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B654DA-72B0-434D-876C-DA660CDB3387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B654DA-72B0-434D-876C-DA660CDB3387}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1974110-BCDD-47CC-B6BC-AADCA6FF6543}
+	EndGlobalSection
 EndGlobal

@@ -1,0 +1,54 @@
+[tool.docformatter]
+close-quotes-on-newline = true
+in-place = true
+recursive = true
+wrap-descriptions = 100
+wrap-summaries = 0
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"  # always generate Python 3.8 compatible code
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+flake8-quotes = {docstring-quotes = "double"}
+ignore = [
+  "T201"  # `print` found
+]
+pydocstyle = {convention = "google"}
+# https://beta.ruff.rs/docs/rules/
+select = [
+  # "ALL"  # TODO: enable ALL
+  "E",
+  "F",
+  "I",
+  "N",
+  "PLE",
+  "Q",
+  "RUF"
+]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = false
+lines-between-types = 1
+order-by-type = false
+
+[tool.tomlsort]
+all = true
+in_place = true
+spaces_before_inline_comment = 2
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+requires = tox>4
+no_package = True
+envlist = linting
+skip_missing_interpreters = True
+
+[testenv:linting]
+deps =
+    pre-commit
+commands =
+    pre-commit run --all-files
+"""

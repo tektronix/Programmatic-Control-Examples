@@ -1,0 +1,25 @@
+---
+name: Lint Code
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+# Cancel running jobs for the same workflow and branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+jobs:
+  lint-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: x  # any version
+          check-latest: true
+      - name: Install tox
+        run: python -m pip install tox
+      - name: Test
+        run: tox -ve linting

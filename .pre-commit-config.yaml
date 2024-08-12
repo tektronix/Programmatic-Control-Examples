@@ -1,0 +1,46 @@
+---
+default_install_hook_types: [pre-commit]
+default_stages: [pre-commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+        args: [--unsafe]
+      - id: check-toml
+      - id: check-json
+      - id: check-xml
+      - id: requirements-txt-fixer
+#      - id: trailing-whitespace  # TODO: enable
+#      - id: end-of-file-fixer  # TODO: enable
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: forbid-submodules
+# TODO: enable these hooks
+#  - repo: https://github.com/Lucas-C/pre-commit-hooks
+#    rev: v1.5.5
+#    hooks:
+#      - id: remove-tabs
+#      - id: forbid-tabs
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.29.0
+    hooks:
+      - id: check-github-workflows
+        args: [--verbose]
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.23.1
+    hooks:
+      - id: toml-sort-fix
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.4
+    hooks:
+      - id: ruff
+#        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+        args: [--check, --diff]
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.5
+    hooks:
+      - id: docformatter
+        additional_dependencies: [tomli]
+        args: [--check, --diff]

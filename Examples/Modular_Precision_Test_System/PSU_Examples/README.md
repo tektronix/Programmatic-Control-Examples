@@ -9,7 +9,7 @@ The examples in this directory work with the [MP5103 Mainframe and Supported PSU
 ### **[2 Channels In Parallel](./2_Channel_Parallel/)**
 Combines channel sourcing in parallel to increase current capabilities.
 
-### **[2 Channels in Series](./2_Channels_Series/)**
+### **[2 Channels in Series](./2_Channel_Series/)**
 Combines channel sourcing in series to increase voltage capabilities.
 
 ### **[Bipolar Output](./Bipolar_Output/)**

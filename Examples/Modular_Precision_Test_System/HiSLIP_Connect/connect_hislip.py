@@ -6,7 +6,6 @@ inst = None
 
 try:
     rm = pyvisa.ResourceManager()
-    # inst = rm.open_resource('USB0::0x0699::0x5103::4674772::INSTR')
     inst = rm.open_resource("TCPIP0::192.168.0.50::hislip0::INSTR")
 
     # Configure I/O *before* using the session

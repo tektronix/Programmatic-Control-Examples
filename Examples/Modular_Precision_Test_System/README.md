@@ -15,6 +15,9 @@ The examples in this directory work with the [MP5103 Mainframe and supported mod
 ### **[Application Examples:](./Application_Examples/)**
 Covers application focused code that may be applicable to any module or may involve more than one module type. 
 
+### **[HiSLIP Connect:](./HISLIP_Connect/)**
+Brief intro and simple Python sample for login to password protected HiSLIP connection to MP5103.
+
 ### **[PSU Examples:](./PSU_Examples/)**
 Examples using PSU functionality or applications. 
 

@@ -7,7 +7,7 @@ wrap-summaries = 0
 
 [tool.ruff]
 line-length = 100
-target-version = "py38"  # always generate Python 3.8 compatible code
+target-version = "py38"  # PYTHON VERSION MARKER (update all locations that use this marker simultaneously)
 
 [tool.ruff.lint]
 fixable = ["ALL"]

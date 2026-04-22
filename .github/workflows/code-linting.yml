@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: x  # any version
+          python-version: 3.8  # PYTHON VERSION MARKER (update all locations that use this marker simultaneously)
           check-latest: true
       - name: Install tox
         run: python -m pip install tox
